@@ -1,0 +1,27 @@
+﻿@model Week1.Models.UserModel
+
+@{
+    @*this changes what information is displayed in the tab window of the browser*@
+    ViewData["Title"] = "Details";
+}
+
+style attributes and formatting learned from https://www.w3schools.com/html/html_styles.asp
+<body style="background-color:lightgreen">
+    <h1 style="background-color:darkviolet;">
+        <b>Summary</b>
+    </h1>
+
+    @*style attributes learned from https://www.w3schools.com/html/html_styles.asp*@
+    <div style="background-color:lightslategray">
+        <p style="font-size:80px; color:burlywood">
+            @Html.DisplayFor(model => model.FirstName)/@Html.DisplayFor(model => model.LastName).
+            @Html.DisplayFor(model => model.Age).
+            @Html.DisplayFor(model => model.Occupation).
+        </p>
+    </div>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+

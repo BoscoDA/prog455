@@ -1,0 +1,30 @@
+﻿@*Page made of all original code based off the Visual Studio auto generated Details page*@
+
+@model Week1.Models.UserModel
+
+@{
+    @*this changes what information is displayed in the tab window of the browser*@
+    ViewData["Title"] = "Estimated Year Born";
+}
+
+@*style attributes learned from https://www.w3schools.com/html/html_styles.asp*@
+<body style="background-color:aquamarine">
+    <div>
+        <h1>Your were born in...</h1>
+
+        @*style attributes learned from https://www.w3schools.com/html/html_styles.asp*@
+        <div style="font-size:80px; text-align:center; color:aliceblue; background-color:mediumpurple">
+            <p>
+                @(DateTime.Now.Year - Model.Age)
+            </p>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</body>
+
+
+
+
