@@ -1,0 +1,21 @@
+﻿h1 {
+    color: blue;
+    text-align: center
+}
+
+h2{
+    outline-style:double;
+}
+
+h3{
+    border:solid;
+    border-color:green;
+}
+
+h4{
+    margin: 100px 100px 100px 100px;
+}
+
+h5{
+    padding: 100px 100px 100px 100px;
+}

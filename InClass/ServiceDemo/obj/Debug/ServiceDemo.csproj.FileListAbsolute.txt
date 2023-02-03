@@ -1,0 +1,11 @@
+C:\workspace\src\prog455\InClass\ServiceDemo\bin\Debug\ServiceDemo.exe.config
+C:\workspace\src\prog455\InClass\ServiceDemo\bin\Debug\ServiceDemo.exe
+C:\workspace\src\prog455\InClass\ServiceDemo\bin\Debug\ServiceDemo.pdb
+C:\workspace\src\prog455\InClass\ServiceDemo\obj\Debug\ServiceDemo.csproj.AssemblyReference.cache
+C:\workspace\src\prog455\InClass\ServiceDemo\obj\Debug\ServiceDemo.csproj.SuggestedBindingRedirects.cache
+C:\workspace\src\prog455\InClass\ServiceDemo\obj\Debug\ServiceDemo.Form1.resources
+C:\workspace\src\prog455\InClass\ServiceDemo\obj\Debug\ServiceDemo.Properties.Resources.resources
+C:\workspace\src\prog455\InClass\ServiceDemo\obj\Debug\ServiceDemo.csproj.GenerateResource.cache
+C:\workspace\src\prog455\InClass\ServiceDemo\obj\Debug\ServiceDemo.csproj.CoreCompileInputs.cache
+C:\workspace\src\prog455\InClass\ServiceDemo\obj\Debug\ServiceDemo.exe
+C:\workspace\src\prog455\InClass\ServiceDemo\obj\Debug\ServiceDemo.pdb

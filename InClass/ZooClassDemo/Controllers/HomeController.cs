@@ -26,5 +26,10 @@ namespace ZooClassDemo.Controllers
 
             return View();
         }
+
+        public ActionResult CSSDemo()
+        {
+            return View();
+        }
     }
 }
