@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    @Scripts.Render("~/bundles/car");
+}
+
+<head>
+    <link rel="stylesheet" href="../content/CarIndex.css" />
+
+    @*Internal JS*@
+    <script>
+        function car2() {
+            document.getElementById("car2").style.color = "blue";
+        }
+    </script>
+</head>
+
+
+<body>
+    <h2>Cars</h2>
+
+    <div id="car1">
+        Honda CRV
+    </div>
+    <button id="btn-car1" type="button">Click Me</button>
+
+    @*Inline JS*@
+    <script>
+        document.getElementById("btn-car1").addEventListener("click", function () {
+            document.getElementById("car1").style.color = "red";
+        })
+    </script>
+
+    <div id="car2">
+        Toyota Camry
+    </div>
+    <button type="button" onclick="car2()">Click Me</button>
+
+    <div id="car3">
+        Ford Fusion
+    </div>
+    <button type="button" onclick="CarThree()">Click Me</button>
+</body>
+
+
