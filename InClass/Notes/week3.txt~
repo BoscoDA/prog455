@@ -1,0 +1,14 @@
+DATABASES
+
+- cluster: big container with 5 - 6 databases in it
+
+tables are collections of objects. can have alias(nicknames)
+
+columns: lowercase with underscores.
+rows: no name
+
+BASIC DB DESIGN
+- Every table will have a ID column (future Proofing)
+- Make as little calls to a db as you can
+
+
