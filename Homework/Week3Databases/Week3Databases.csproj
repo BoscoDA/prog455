@@ -158,8 +158,8 @@
   <ItemGroup>
     <Content Include="CharacterModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CharacterModel.Context.cs</LastGenOutput>
       <DependentUpon>CharacterModel.edmx</DependentUpon>
+      <LastGenOutput>CharacterModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="CharacterModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -170,6 +170,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CharacterStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

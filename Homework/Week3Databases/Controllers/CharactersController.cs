@@ -7,17 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Week3Databases;
+using Week3Databases.Services;
 
 namespace Week3Databases.Controllers
 {
     public class CharactersController : Controller
     {
-        private PROG455SP23Entities db = new PROG455SP23Entities();
+        private PROG455FA23Entities db = new PROG455FA23Entities();
+        private Service CharacterService = new Service();
 
         // GET: Characters
         public ActionResult Index()
         {
-            return View(db.Characters.ToList());
+            var characters = CharacterService.ReturnCharacterList();
+
+            return View(characters);
         }
 
         // GET: Characters/Details/5
@@ -27,11 +31,14 @@ namespace Week3Databases.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
+
+            Character character = CharacterService.ReturnCharacter(id);
+
             if (character == null)
             {
                 return HttpNotFound();
             }
+
             return View(character);
         }
 
@@ -50,8 +57,7 @@ namespace Week3Databases.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Characters.Add(character);
-                db.SaveChanges();
+                CharacterService.CreateCharacter(character);
                 return RedirectToAction("Index");
             }
 
@@ -65,11 +71,14 @@ namespace Week3Databases.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
+
+            Character character = CharacterService.ReturnCharacter(id);
+
             if (character == null)
             {
                 return HttpNotFound();
             }
+
             return View(character);
         }
 
@@ -82,10 +91,10 @@ namespace Week3Databases.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(character).State = EntityState.Modified;
-                db.SaveChanges();
+                CharacterService.EditCharacter(character);
                 return RedirectToAction("Index");
             }
+
             return View(character);
         }
 
@@ -96,11 +105,14 @@ namespace Week3Databases.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
+
+            Character character = CharacterService.ReturnCharacter(id);
+
             if (character == null)
             {
                 return HttpNotFound();
             }
+
             return View(character);
         }
 
@@ -109,9 +121,8 @@ namespace Week3Databases.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Character character = db.Characters.Find(id);
-            db.Characters.Remove(character);
-            db.SaveChanges();
+            CharacterService.DeleteCharacter(id);
+
             return RedirectToAction("Index");
         }
 

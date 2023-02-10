@@ -13,10 +13,10 @@ namespace Week3Databases
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PROG455SP23Entities : DbContext
+    public partial class PROG455FA23Entities : DbContext
     {
-        public PROG455SP23Entities()
-            : base("name=PROG455SP23Entities")
+        public PROG455FA23Entities()
+            : base("name=PROG455FA23Entities")
         {
         }
     

@@ -1,0 +1,43 @@
+﻿body {
+    background-color: navajowhite;
+}
+
+table {
+    background-color: aquamarine;
+}
+th {
+    font-family: 'Comic Sans MS';
+    font-size: medium;
+    width:max-content;
+    height:50px;
+}
+
+tr {
+    font-family:'Courier New';
+    font-size:small;
+}
+h2{
+    font-size: 50pt;
+    font-family: Impact;
+}
+
+hr{
+    border:none;
+    background-color: black;
+    height: 2.5px;
+}
+
+dl{
+    background-color:aquamarine;    
+}
+
+dt {
+    font-size: 17pt;
+}
+
+dd {
+    font-size: 17pt;
+    
+}
+
+
