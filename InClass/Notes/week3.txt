@@ -2,15 +2,70 @@ DATABASES
 
 - cluster: big container with 5 - 6 databases in it
 
-tables are collections of objects. can have alias(nicknames)
+- Data is stoed in a table which is made up of rows and columns.
 
-columns: lowercase with underscores.
-rows: no name
+- Tables: are collections of objects. Can have alias(nicknames).
+- Columns: Refered to using a name, havce one type defined. Can be used as a
+  primary key
+- Rows: Refered to using a unique field.
+
+- Entity Framework require a Primary Key to be selected
 
 BASIC DB DESIGN
 - Every table will have a ID column (future Proofing)
 - Make as little calls to a db as you can
 
 dbo = database owner
+
+INSERT
+STATEMENTS-------------------------------------------------------------
+
+Template :
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+
+Example:
+INSERT [dbo].[Student] ([First_Name], [Last_Name], [DOB], [Weight], [Height] )
+VALUES ('John', 'Doe', '1956-02-09', 160, 64)
+
+SELECT STATEMENTS ------------------------------------------------------------
+
+Template:
+SELECT column1, column2, ...FROM table_name;
+
+Example:
+SELECT [StudentID],[First_Name],[Last_Name],[DOB],[Weight],[Height]FROM
+[PROG455FA22].[dbo].[Student]
+
+Select All: SELECT * FROM [table]
+Select specific max: SELECT TOP [number] FROM [table] WHERE 1=1
+
+WHERE STATEMENT---------------------------------------------------------------
+-Can specify multiple conditions
+
+Template: 
+SELECT column1, column2, ...FROM table_nameWHERE condition(s);
+Example:
+SELECT [StudentID],[First_Name],[Last_Name],[DOB],[Weight],[Height]FROM
+[PROG455FA22].[dbo].[Student] WHERE StudentID = 2 OR First_Name = 'John'
+
+UPDATE STATEMENT-------------------------------------------------------------
+
+Template:
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+Example:
+UPDATE  [PROG455FA22].[dbo].[Student]
+SET First_Name = 'Jane', Last_Name ='Doe'  WHERE StudentID = 1
+
+DELETE STATEMENT ------------------------------------------------------------
+
+Template:
+DELETE FROM table_name WHERE condition;
+
+Example:
+DELETE FROM  [PROG455FA22].[dbo].[Student] WHERE StudentID = 2
 
 
