@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PROG455SP23ModelStoreContainer" CdmEntityContainer="PROG455SP23Entities">
+    <EntitySetMapping Name="Characters">
+      <EntityTypeMapping TypeName="PROG455SP23Model.Character">
+        <MappingFragment StoreEntitySet="Character">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Element_Type" ColumnName="Element_Type" />
+          <ScalarProperty Name="Job_Class" ColumnName="Job_Class" />
+          <ScalarProperty Name="ATK" ColumnName="ATK" />
+          <ScalarProperty Name="DEF" ColumnName="DEF" />
+          <ScalarProperty Name="Mana" ColumnName="Mana" />
+          <ScalarProperty Name="HP_Initial" ColumnName="HP_Initial" />
+          <ScalarProperty Name="HP_Max" ColumnName="HP_Max" />
+          <ScalarProperty Name="NPC" ColumnName="NPC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maps">
+      <EntityTypeMapping TypeName="PROG455SP23Model.Map">
+        <MappingFragment StoreEntitySet="Map">
+          <ScalarProperty Name="MapID" ColumnName="MapID" />
+          <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+          <ScalarProperty Name="Map_Name" ColumnName="Map_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
