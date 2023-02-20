@@ -5,90 +5,92 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<head>
+    <link rel="stylesheet" href="/content/CharacterStyle.css" />
+</head>
 
-<div>
-    <h4>Character</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<body>
+    <h2>Details</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <div>
+        <h4>Character</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Element_Type)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Element_Type)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Element_Type)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Job_Class)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Element_Type)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Job_Class)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Job_Class)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ATK)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Job_Class)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ATK)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ATK)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DEF)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ATK)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DEF)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DEF)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Mana)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DEF)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Mana)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Mana)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HP_Initial)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Mana)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.HP_Initial)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.HP_Initial)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HP_Max)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HP_Initial)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.HP_Max)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.HP_Max)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NPC)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HP_Max)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NPC)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NPC)
+            </dt>
 
-        @if (Model.Maps != null && Model.Maps.Count > 0)
-        {
+            <dd>
+                @Html.DisplayFor(model => model.NPC)
+            </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.Maps)
             </dt>
-            foreach (var map in Model.Maps)
+            @foreach (var map in Model.Maps)
             {
                 <dd>
                     @map.Map_Name
@@ -96,12 +98,10 @@
             }
 
 
-        }
-
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
