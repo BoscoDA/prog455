@@ -55,7 +55,7 @@ namespace Week4Databases.Controllers
         // GET: Characters/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create", new Character());
         }
 
         // POST: Characters/Create
@@ -115,7 +115,7 @@ namespace Week4Databases.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+            
             Character character = CharacterService.ReturnCharacter(id);
 
             if (character == null)
