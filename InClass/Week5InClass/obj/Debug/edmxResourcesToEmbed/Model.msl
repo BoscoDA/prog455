@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="PROG455SP23Model.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="First_Name" ColumnName="First_Name" />
           <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
           <ScalarProperty Name="Password" ColumnName="Password" />

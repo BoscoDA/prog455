@@ -147,6 +147,7 @@ namespace Week5InClass.Controllers
             if(foundUser != null)
             {
                 authorized = SHA256Util.VerifyPasswordWithHash(user.Password, foundUser.Password);
+                
             }
 
             if(authorized)
