@@ -8,33 +8,32 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.SessionState;
 using Week5AuthenticationAuthorization;
+using Week5AuthenticationAuthorization.Services;
 using Week5AuthenticationAuthorization.Utilities;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Week5AuthenticationAuthorization.Controllers
 {
     public class UsersController : Controller
     {
         private PROG455SP23Entities db = new PROG455SP23Entities();
+        private AuthorizationService authorizationService = new AuthorizationService();
 
         // GET: Users
         public ActionResult Index()
         {
-            var test = Session["Current_User"];
-            var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
 
-            if (currentUser.Role == "User" || currentUser.Role == "Admin" || currentUser.Role == "Super Admin")
+            if (Session["Authenticated"]?.Equals(true) == true)
             {
-                Session.Add("Authorized", true);
-            }
+                var test = Session["User_Id"];
+                var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
 
-            else
-            {
-                Session.Add("Authorized", false);
-            }
+                if (authorizationService.IsAuthorized("Index", currentUser) == true)
+                {
+                    return View(db.Users.ToList());
+                }
 
-            if (Session["Authorized"]?.Equals(true) == true)
-            {
-                return View(db.Users.ToList());
+                return RedirectToAction("Login");
             }
             else
             {
@@ -63,22 +62,17 @@ namespace Week5AuthenticationAuthorization.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            var test = Session["Current_User"];
-            var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
-
-            if(currentUser.Role == "Admin" || currentUser.Role == "Super Admin")
+            if (Session["Authenticated"]?.Equals(true) == true)
             {
-                Session.Add("Authorized", true);
-            }
+                var test = Session["User_Id"];
+                var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
 
-            else
-            {
-                Session.Add("Authorized", false);
-            }
+                if (authorizationService.IsAuthorized("Create", currentUser) == true)
+                {
+                    return View(new User());
+                }
 
-            if (Session["Authorized"]?.Equals(true) == true)
-            {
-                return View();
+                return RedirectToAction("Login");
             }
 
             else
@@ -108,37 +102,33 @@ namespace Week5AuthenticationAuthorization.Controllers
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
-            var test = Session["Current_User"];
-            var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
 
-            if (currentUser.Role == "Admin" || currentUser.Role == "Super Admin")
+            if (Session["Authenticated"]?.Equals(true) == true)
             {
-                Session.Add("Authorized", true);
-            }
+                var test = Session["User_Id"];
+                var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
 
-            else
-            {
-                Session.Add("Authorized", false);
-            }
-
-            if (Session["Authorized"]?.Equals(true) == true)
-            {
-                if (id == null)
+                if (authorizationService.IsAuthorized("Edit", currentUser) == true)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    User user = db.Users.Find(id);
+                    if (user == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(user);
                 }
-                User user = db.Users.Find(id);
-                if (user == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(user);
+
+                return RedirectToAction("Login");
             }
 
             else
             {
                 return View("Index", db.Users.ToList());
-            }            
+            }
         }
 
         // POST: Users/Edit/5
@@ -160,31 +150,26 @@ namespace Week5AuthenticationAuthorization.Controllers
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
-            var test = Session["Current_User"];
-            var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
-
-            if (currentUser.Role == "Super Admin")
+            if (Session["Authenticated"]?.Equals(true) == true)
             {
-                Session.Add("Authorized", true);
-            }
+                var test = Session["User_Id"];
+                var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
 
-            else
-            {
-                Session.Add("Authorized", false);
-            }
-
-            if (Session["Authorized"]?.Equals(true) == true)
-            {
-                if (id == null)
+                if (authorizationService.IsAuthorized("Delete", currentUser) == true)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    User user = db.Users.Find(id);
+                    if (user == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(user);
                 }
-                User user = db.Users.Find(id);
-                if (user == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(user);
+
+                return RedirectToAction("Login");
             }
 
             else
@@ -215,7 +200,7 @@ namespace Week5AuthenticationAuthorization.Controllers
 
         public ActionResult Login()
         {
-            if (Session["Authorized"]?.Equals(true) == true)
+            if (Session["Authenticated"]?.Equals(true) == true)
             {
                 return RedirectToAction("Index");
             }
@@ -238,14 +223,14 @@ namespace Week5AuthenticationAuthorization.Controllers
 
             if (authorized)
             {
-                Session.Add("Authorized", true);
-                Session.Add("Current_User", foundUser.Username);
+                Session.Add("Authenticated", true);
+                Session.Add("User_Id", foundUser.Username);
                 return View("Index", db.Users.ToList());
             }
 
             else
             {
-                Session.Add("Authorized", false);
+                Session.Add("Authenticated", false);
                 ModelState.AddModelError("Password", "Invalid Credentials");
                 ViewBag.Error = "Invalid credentials";
                 return View("Login", new User());
@@ -254,7 +239,7 @@ namespace Week5AuthenticationAuthorization.Controllers
 
         public ActionResult LogOut()
         {
-            Session.Add("Authorized", false);
+            Session.Clear();
 
             return RedirectToAction("Login");
         }
