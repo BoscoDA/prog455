@@ -18,66 +18,96 @@ namespace Week5AuthenticationAuthorization.Controllers
     {
         private PROG455SP23Entities db = new PROG455SP23Entities();
         private AuthorizationService authorizationService = new AuthorizationService();
+        private DBService dbService = new DBService();
 
         // GET: Users
         public ActionResult Index()
         {
-
-            if (Session["Authenticated"]?.Equals(true) == true)
+            try
             {
-                var test = Session["User_Id"];
-                var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
-
-                if (authorizationService.IsAuthorized("Index", currentUser) == true)
+                if (Session["Authenticated"]?.Equals(true) == true)
                 {
-                    return View(db.Users.ToList());
-                }
+                    var currentUser = dbService.GetUserFromDB((string)Session["User_ID"]);
 
-                return RedirectToAction("Login");
+                    if (authorizationService.IsAuthorized("Index", currentUser) == true)
+                    {
+                        var users = dbService.GetUserListFromDB();
+                        return View(users);
+                    }
+
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return RedirectToAction("Login");
+                return View("Error", ex); 
             }
+            
         }
 
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Session["Authenticated"]?.Equals(true) == true)
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+
+                    User user = db.Users.Find(id);
+
+                    if (user == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    return View(user);
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
             }
 
-            User user = db.Users.Find(id);
-
-            if (user == null)
+            catch(Exception ex)
             {
-                return HttpNotFound();
+                LogOut();
+                return View("Error", ex);
             }
-
-            return View(user);
+            
         }
 
         // GET: Users/Create
         public ActionResult Create()
         {
-            if (Session["Authenticated"]?.Equals(true) == true)
+            try
             {
-                var test = Session["User_Id"];
-                var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
-
-                if (authorizationService.IsAuthorized("Create", currentUser) == true)
+                if (Session["Authenticated"]?.Equals(true) == true)
                 {
-                    return View(new User());
+                    var currentUser = dbService.GetUserFromDB((string)Session["User_Id"]);
+
+                    if (authorizationService.IsAuthorized("Create", currentUser) == true)
+                    {
+                        return View(new User());
+                    }
+                    ViewBag.Message = "Not authorized to use that function.";
+                    return RedirectToAction("Index", dbService.GetUserListFromDB());
                 }
-
-                return RedirectToAction("Login");
+                else
+                {
+                    return RedirectToAction("Login", new User());
+                }
             }
-
-            else
+            catch(Exception ex)
             {
-                return View("Index", db.Users.ToList());
+                return View("Error", ex);
             }
         }
 
@@ -88,47 +118,65 @@ namespace Week5AuthenticationAuthorization.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Username,Password,First_Name,Last_Name,Role")] User user)
         {
-            if (ModelState.IsValid)
+            try
             {
-                user.Password = SHA256Util.CreateHash(user.Password);
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    dbService.CreateUser(user);
+                    return RedirectToAction("Index");
+                }
+
+                return View(user);
             }
 
-            return View(user);
+            catch(Exception ex)
+            {
+                return View("Error", ex);
+            }
+            
         }
 
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
-
-            if (Session["Authenticated"]?.Equals(true) == true)
+            try
             {
-                var test = Session["User_Id"];
-                var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
-
-                if (authorizationService.IsAuthorized("Edit", currentUser) == true)
+                if (Session["Authenticated"]?.Equals(true) == true)
                 {
-                    if (id == null)
+                    var currentUser = dbService.GetUserFromDB((string)Session["User_Id"]);
+                    if (authorizationService.IsAuthorized("Edit", currentUser) == true)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        if (id == null)
+                        {
+                            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        }
+
+                        User user = db.Users.Find(id);
+
+                        if (user == null)
+                        {
+                            return HttpNotFound();
+                        }
+
+                        return View(user);
                     }
-                    User user = db.Users.Find(id);
-                    if (user == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    return View(user);
+
+                    ViewBag.Message = "Not authorized to use that function.";
+                    return RedirectToAction("Index", dbService.GetUserListFromDB());
                 }
 
-                return RedirectToAction("Login");
+                else
+                {
+                    return RedirectToAction("Login");
+                }
             }
 
-            else
+            catch(Exception ex)
             {
-                return View("Index", db.Users.ToList());
+                return View("Error",ex);
             }
+
+            
         }
 
         // POST: Users/Edit/5
@@ -138,44 +186,62 @@ namespace Week5AuthenticationAuthorization.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Username,Password,First_Name,Last_Name,Role")] User user)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    dbService.EditUser(user);
+                    ModelState.AddModelError("auth", "TEST");
+                    return RedirectToAction("Index");
+                }
+                return View(user);
             }
-            return View(user);
+
+            catch (Exception ex)
+            {
+                return View("Error", ex);
+            }
+            
         }
 
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (Session["Authenticated"]?.Equals(true) == true)
+            try
             {
-                var test = Session["User_Id"];
-                var currentUser = db.Users.Where(x => x.Username == ((string)test)).FirstOrDefault();
-
-                if (authorizationService.IsAuthorized("Delete", currentUser) == true)
+                if (Session["Authenticated"]?.Equals(true) == true)
                 {
-                    if (id == null)
+                    var currentUser = dbService.GetUserFromDB((string)Session["User_Id"]);
+
+                    if (authorizationService.IsAuthorized("Delete", currentUser) == true)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        if (id == null)
+                        {
+
+                            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        }
+                        User user = db.Users.Find(id);
+                        if (user == null)
+                        {
+                            return HttpNotFound();
+                        }
+                        return View(user);
                     }
-                    User user = db.Users.Find(id);
-                    if (user == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    return View(user);
+                    ViewBag.Message = "Not authorized to use that function.";
+                    return RedirectToAction("Index", dbService.GetUserListFromDB());
+
                 }
 
-                return RedirectToAction("Login");
+                else
+                {
+                    return RedirectToAction("Login");
+                }
             }
-
-            else
+            catch(Exception ex)
             {
-                return View("Index", db.Users.ToList());
+                return View("Error", ex);
             }
+            
         }
 
         // POST: Users/Delete/5
@@ -183,10 +249,16 @@ namespace Week5AuthenticationAuthorization.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                dbService.DeleteUser(id);
+                return RedirectToAction("Index");
+            }
+            catch(Exception ex)
+            {
+                return View("Error", ex);
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
@@ -200,41 +272,58 @@ namespace Week5AuthenticationAuthorization.Controllers
 
         public ActionResult Login()
         {
-            if (Session["Authenticated"]?.Equals(true) == true)
+            try
             {
-                return RedirectToAction("Index");
+                if (Session["Authenticated"]?.Equals(true) == true)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(new User());
+                }
             }
-            else
+
+            catch (Exception ex)
             {
-                return View(new User());
+                return View("Error", ex);
             }
+            
         }
 
         [HttpPost]
         public ActionResult Login([Bind(Include = "Username,Password")] User user)
         {
-            bool authorized = false;
-            var foundUser = db.Users.Where(x => x.Username == user.Username).FirstOrDefault();
-
-            if (foundUser != null)
+            try
             {
-                authorized = SHA256Util.VerifyPasswordWithHash(user.Password, foundUser.Password);
-            }
+                bool authorized = false;
+                var foundUser = dbService.GetUserFromDB(user.Username);
 
-            if (authorized)
-            {
-                Session.Add("Authenticated", true);
-                Session.Add("User_Id", foundUser.Username);
-                return View("Index", db.Users.ToList());
-            }
+                if (foundUser != null)
+                {
+                    authorized = SHA256Util.VerifyPasswordWithHash(user.Password, foundUser.Password);
+                }
 
-            else
-            {
-                Session.Add("Authenticated", false);
-                ModelState.AddModelError("Password", "Invalid Credentials");
-                ViewBag.Error = "Invalid credentials";
-                return View("Login", new User());
+                if (authorized)
+                {
+                    Session.Add("Authenticated", true);
+                    Session.Add("User_Id", foundUser.Username);
+                    return RedirectToAction("Index", db.Users.ToList());
+                }
+
+                else
+                {
+                    Session.Add("Authenticated", false);
+                    ModelState.AddModelError("Password", "Invalid Credentials");
+                    ViewBag.Error = "Invalid credentials";
+                    return View(new User());
+                }
             }
+            catch(Exception ex)
+            {
+                return View("Error", ex);
+            }
+            
         }
 
         public ActionResult LogOut()

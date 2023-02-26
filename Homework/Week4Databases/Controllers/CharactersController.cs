@@ -71,7 +71,7 @@ namespace Week4Databases.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(character);
+            return View(new Character());
         }
 
         // GET: Characters/Edit/5
