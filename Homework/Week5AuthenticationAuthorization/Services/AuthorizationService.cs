@@ -26,6 +26,9 @@ namespace Week5AuthenticationAuthorization.Services
                 case "Edit":
                     isAuthorized = EditAuth(user);
                     break;
+                case "Details":
+                    isAuthorized = DetailsAuth(user);
+                    break;
                 default:
                     break;
             }
@@ -81,5 +84,16 @@ namespace Week5AuthenticationAuthorization.Services
             }
         }
 
+        private bool DetailsAuth(User user)
+        {
+            if (user.Role == "Admin" || user.Role == "Super Admin")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

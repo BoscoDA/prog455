@@ -56,19 +56,28 @@ namespace Week5AuthenticationAuthorization.Controllers
             {
                 if (Session["Authenticated"]?.Equals(true) == true)
                 {
-                    if (id == null)
+
+                    var currentUser = dbService.GetUserFromDB((string)Session["User_Id"]);
+
+                    if (authorizationService.IsAuthorized("Details", currentUser) == true)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        if (id == null)
+                        {
+                            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        }
+
+                        User user = db.Users.Find(id);
+
+                        if (user == null)
+                        {
+                            return HttpNotFound();
+                        }
+
+                        return View(user);
                     }
+                    ViewBag.Error = "Unauthorized access!";
+                    return View("Index", dbService.GetUserListFromDB());
 
-                    User user = db.Users.Find(id);
-
-                    if (user == null)
-                    {
-                        return HttpNotFound();
-                    }
-
-                    return View(user);
                 }
                 else
                 {
@@ -97,8 +106,8 @@ namespace Week5AuthenticationAuthorization.Controllers
                     {
                         return View(new User());
                     }
-                    ViewBag.Message = "Not authorized to use that function.";
-                    return RedirectToAction("Index", dbService.GetUserListFromDB());
+                    ViewBag.Error = "Unauthorized access!";
+                    return View("Index", dbService.GetUserListFromDB());
                 }
                 else
                 {
@@ -161,8 +170,8 @@ namespace Week5AuthenticationAuthorization.Controllers
                         return View(user);
                     }
 
-                    ViewBag.Message = "Not authorized to use that function.";
-                    return RedirectToAction("Index", dbService.GetUserListFromDB());
+                    ViewBag.Error = "Unauthorized access!";
+                    return View("Index", dbService.GetUserListFromDB());
                 }
 
                 else
@@ -227,8 +236,8 @@ namespace Week5AuthenticationAuthorization.Controllers
                         }
                         return View(user);
                     }
-                    ViewBag.Message = "Not authorized to use that function.";
-                    return RedirectToAction("Index", dbService.GetUserListFromDB());
+                    ViewBag.Error = "Unauthorized access!";
+                    return View("Index", dbService.GetUserListFromDB());
 
                 }
 

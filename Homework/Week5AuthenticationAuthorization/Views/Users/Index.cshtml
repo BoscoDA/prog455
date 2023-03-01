@@ -10,6 +10,12 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@if(ViewBag.Error != null) 
+ {
+    <h3 style="color:red">You are unauthorized for that action!</h3>
+ }
+
 <table class="table">
     <tr>
         <th>
@@ -45,14 +51,14 @@
     }
 </table>
 
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-    </script>
-}
+@*@if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+                window.onload = function () {
+                    alert("@ViewBag.Message");
+                };
+        </script>
+    }*@
 
 
 
