@@ -38,7 +38,7 @@ namespace Week5AuthenticationAuthorization.Services
 
         private bool IndexAuth(User user)
         {
-            if(user.Role == "User" || user.Role == "Admin" || user.Role == "Super Admin")
+            if (user.Role == "User" || user.Role == "Admin" || user.Role == "Super Admin")
             {
                 return true;
             }
@@ -74,7 +74,7 @@ namespace Week5AuthenticationAuthorization.Services
 
         private bool DeleteAuth(User user)
         {
-            if ( user.Role == "Super Admin")
+            if (user.Role == "Super Admin")
             {
                 return true;
             }

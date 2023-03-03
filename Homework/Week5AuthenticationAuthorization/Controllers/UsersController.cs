@@ -42,11 +42,11 @@ namespace Week5AuthenticationAuthorization.Controllers
                     return RedirectToAction("Login");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return View("Error", ex); 
+                return View("Error", ex);
             }
-            
+
         }
 
         // GET: Users/Details/5
@@ -85,12 +85,12 @@ namespace Week5AuthenticationAuthorization.Controllers
                 }
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogOut();
                 return View("Error", ex);
             }
-            
+
         }
 
         // GET: Users/Create
@@ -114,7 +114,7 @@ namespace Week5AuthenticationAuthorization.Controllers
                     return RedirectToAction("Login", new User());
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View("Error", ex);
             }
@@ -138,11 +138,11 @@ namespace Week5AuthenticationAuthorization.Controllers
                 return View(user);
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View("Error", ex);
             }
-            
+
         }
 
         // GET: Users/Edit/5
@@ -180,12 +180,12 @@ namespace Week5AuthenticationAuthorization.Controllers
                 }
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return View("Error",ex);
+                return View("Error", ex);
             }
 
-            
+
         }
 
         // POST: Users/Edit/5
@@ -210,7 +210,7 @@ namespace Week5AuthenticationAuthorization.Controllers
             {
                 return View("Error", ex);
             }
-            
+
         }
 
         // GET: Users/Delete/5
@@ -246,11 +246,11 @@ namespace Week5AuthenticationAuthorization.Controllers
                     return RedirectToAction("Login");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View("Error", ex);
             }
-            
+
         }
 
         // POST: Users/Delete/5
@@ -263,11 +263,11 @@ namespace Week5AuthenticationAuthorization.Controllers
                 dbService.DeleteUser(id);
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View("Error", ex);
             }
-            
+
         }
 
         protected override void Dispose(bool disposing)
@@ -297,7 +297,7 @@ namespace Week5AuthenticationAuthorization.Controllers
             {
                 return View("Error", ex);
             }
-            
+
         }
 
         [HttpPost]
@@ -328,11 +328,11 @@ namespace Week5AuthenticationAuthorization.Controllers
                     return View(new User());
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View("Error", ex);
             }
-            
+
         }
 
         public ActionResult LogOut()

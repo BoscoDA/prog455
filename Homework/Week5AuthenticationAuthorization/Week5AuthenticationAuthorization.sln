@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week5AuthenticationAuthorization", "Week5AuthenticationAuthorization.csproj", "{0F28D9A5-9BE4-4C07-9113-7D79039F9793}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week5AuthenticationAuthorization", "Week5AuthenticationAuthorization.csproj", "{C9CF35D7-8393-4A8E-A6FB-2524D259E7BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0F28D9A5-9BE4-4C07-9113-7D79039F9793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F28D9A5-9BE4-4C07-9113-7D79039F9793}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F28D9A5-9BE4-4C07-9113-7D79039F9793}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F28D9A5-9BE4-4C07-9113-7D79039F9793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CF35D7-8393-4A8E-A6FB-2524D259E7BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CF35D7-8393-4A8E-A6FB-2524D259E7BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CF35D7-8393-4A8E-A6FB-2524D259E7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CF35D7-8393-4A8E-A6FB-2524D259E7BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {58BFCFAB-0B07-46EC-B9FA-6CEFFCD99C2B}
+		SolutionGuid = {CC3B673B-2999-4F26-9CDF-92F5630E23DE}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,5 @@
 ﻿using System.Web;
 using System.Web.Mvc;
-using Week5AuthenticationAuthorization.Utilities;
 
 namespace Week5AuthenticationAuthorization
 {
