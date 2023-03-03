@@ -1,0 +1,15 @@
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\Week6CrashCourse.csproj.AssemblyReference.cache
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\Week6CrashCourse.GeneratedMSBuildEditorConfig.editorconfig
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\Week6CrashCourse.AssemblyInfoInputs.cache
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\Week6CrashCourse.AssemblyInfo.cs
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\Week6CrashCourse.csproj.CoreCompileInputs.cache
+C:\workspace\src\prog455\Homework\Week6CrashCourse\bin\Debug\net6.0\Week6CrashCourse.exe
+C:\workspace\src\prog455\Homework\Week6CrashCourse\bin\Debug\net6.0\Week6CrashCourse.deps.json
+C:\workspace\src\prog455\Homework\Week6CrashCourse\bin\Debug\net6.0\Week6CrashCourse.runtimeconfig.json
+C:\workspace\src\prog455\Homework\Week6CrashCourse\bin\Debug\net6.0\Week6CrashCourse.dll
+C:\workspace\src\prog455\Homework\Week6CrashCourse\bin\Debug\net6.0\Week6CrashCourse.pdb
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\Week6CrashCourse.dll
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\refint\Week6CrashCourse.dll
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\Week6CrashCourse.pdb
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\Week6CrashCourse.genruntimeconfig.cache
+C:\workspace\src\prog455\Homework\Week6CrashCourse\obj\Debug\net6.0\ref\Week6CrashCourse.dll
