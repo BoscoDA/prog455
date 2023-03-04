@@ -48,6 +48,10 @@ namespace Week5AuthenticationAuthorization.Services
         /// <param name="user"></param>
         public void CreateUser(User user)
         {
+            if(user.Role != "User" || user.Role != "Admin" || user.Role != "Super Admin")
+            {
+                user.Role = "User";
+            }
             user.Password = SHA256Util.CreateHash(user.Password);
             db.Users.Add(user);
             db.SaveChanges();
