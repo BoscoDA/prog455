@@ -81,3 +81,7 @@ C:\workspace\src\prog455\InClass\Week3Demo\obj\Debug\Week3Demo.csproj.CoreCompil
 C:\workspace\src\prog455\InClass\Week3Demo\obj\Debug\Week3Demo.csproj.CopyComplete
 C:\workspace\src\prog455\InClass\Week3Demo\obj\Debug\Week3Demo.dll
 C:\workspace\src\prog455\InClass\Week3Demo\obj\Debug\Week3Demo.pdb
+C:\workspace\src\prog455\InClass\Week3Demo\bin\roslyn\System.Buffers.dll
+C:\workspace\src\prog455\InClass\Week3Demo\bin\roslyn\System.Memory.dll
+C:\workspace\src\prog455\InClass\Week3Demo\bin\roslyn\System.Numerics.Vectors.dll
+C:\workspace\src\prog455\InClass\Week3Demo\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
