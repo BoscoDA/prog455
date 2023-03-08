@@ -21,7 +21,7 @@ namespace Week6CrashCourse.Models
 
         public string GetInfo()
         {
-            return $"{Name} the clown who is {Age} years old.";
+            return $"{Name} the clown that is {Age} years old.";
         }
 
         public string PerformTrick()

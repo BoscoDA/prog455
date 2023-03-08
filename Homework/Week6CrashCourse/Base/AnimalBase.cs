@@ -26,7 +26,7 @@ namespace Week6CrashCourse.Base
 
         public virtual string GetInfo()
         {
-            return $"{Name} the {Species} who is {Age} years old.";
+            return $"{Name} is a {Species} that is {Age} years old.";
         }
 
         public virtual string PerformTrick()
