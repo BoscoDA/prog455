@@ -41,8 +41,7 @@ namespace Week8AssignmentDesignPatterns.Models
 
                 eyeballReceiver.ProcessRequest(mansion.GetItem());
 
-                Printer.Print("\nPress any key to continue to the next floor...", ConsoleColor.Yellow);
-                Console.ReadKey();
+                Printer.WaitForInput("\nPress any key to continue to the next floor...");
 
                 mansion.LoadNextFloor();
 
@@ -55,7 +54,7 @@ namespace Week8AssignmentDesignPatterns.Models
 
             GameEnd();
 
-            Console.ReadKey();
+            Printer.WaitForInput("\nPress any key to exit...\n");
         }
 
         /// <summary>

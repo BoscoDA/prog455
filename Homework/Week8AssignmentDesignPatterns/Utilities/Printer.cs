@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,18 @@ namespace Week8AssignmentDesignPatterns.Utilities
             Console.ForegroundColor = color;
 
             Console.Write(output);
+
+            Console.ForegroundColor = previousColor;
+        }
+
+        public static void WaitForInput(string message)
+        {
+            ConsoleColor previousColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.Write(message);
+
+            Console.ReadKey();
 
             Console.ForegroundColor = previousColor;
         }
