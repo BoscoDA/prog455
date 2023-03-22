@@ -1,0 +1,8 @@
+C:\workspace\src\prog455\Homework\Week8AssignmentDesignPatterns\bin\Debug\Week8AssignmentDesignPatterns.exe.config
+C:\workspace\src\prog455\Homework\Week8AssignmentDesignPatterns\bin\Debug\Week8AssignmentDesignPatterns.exe
+C:\workspace\src\prog455\Homework\Week8AssignmentDesignPatterns\bin\Debug\Week8AssignmentDesignPatterns.pdb
+C:\workspace\src\prog455\Homework\Week8AssignmentDesignPatterns\obj\Debug\Week8AssignmentDesignPatterns.csproj.AssemblyReference.cache
+C:\workspace\src\prog455\Homework\Week8AssignmentDesignPatterns\obj\Debug\Week8AssignmentDesignPatterns.csproj.SuggestedBindingRedirects.cache
+C:\workspace\src\prog455\Homework\Week8AssignmentDesignPatterns\obj\Debug\Week8AssignmentDesignPatterns.csproj.CoreCompileInputs.cache
+C:\workspace\src\prog455\Homework\Week8AssignmentDesignPatterns\obj\Debug\Week8AssignmentDesignPatterns.exe
+C:\workspace\src\prog455\Homework\Week8AssignmentDesignPatterns\obj\Debug\Week8AssignmentDesignPatterns.pdb
