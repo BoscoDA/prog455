@@ -83,7 +83,7 @@ namespace DesignPatternTests
         public void PotionReceiver_ProcessRequestProperItem_AddToInventory()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var receiver = new PotionReceiver();
             var nextReceiver = new EyeballReceiver();
             IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemType.POTION);
@@ -100,7 +100,7 @@ namespace DesignPatternTests
         public void PotionReceiver_ProcessRequestNextReciever_AddToInventory()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var receiver = new EyeballReceiver();
             var nextReceiver = new PotionReceiver();
             IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemType.POTION);
@@ -117,7 +117,7 @@ namespace DesignPatternTests
         public void PotionReceiver_ProcessRequestExecption_Exception()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var receiver = new PotionReceiver();
             IItem item = ItemFactory.CreateItem("Red Key", "Description", ItemType.KEY);
 
@@ -145,7 +145,7 @@ namespace DesignPatternTests
         public void EyeballReceiver_ProcessRequestProperItem_AddToInventory()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var receiver = new EyeballReceiver();
             var nextReceiver = new KeyReceiver();
             IItem item = ItemFactory.CreateItem("Human Eyeball", "Description", ItemType.EYEBALL);
@@ -162,7 +162,7 @@ namespace DesignPatternTests
         public void EyeballReceiver_ProcessRequestNextReciever_AddToInventory()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var receiver = new EyeballReceiver();
             var nextReceiver = new PotionReceiver();
             IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemType.POTION);
@@ -179,7 +179,7 @@ namespace DesignPatternTests
         public void EyeballReceiver_ProcessRequestExecption_Exception()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var receiver = new EyeballReceiver();
             IItem item = ItemFactory.CreateItem("Potion", "Description", ItemType.POTION);
 
@@ -207,7 +207,7 @@ namespace DesignPatternTests
         public void KeyReceiver_ProcessRequestProperItem_AddToInventory()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var receiver = new KeyReceiver();
             var nextReceiver = new PotionReceiver();
             IItem item = ItemFactory.CreateItem("Master Key", "Description", ItemType.KEY);
@@ -224,7 +224,7 @@ namespace DesignPatternTests
         public void KeyReceiver_ProcessRequestNextReciever_AddToInventory()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var receiver = new KeyReceiver();
             var nextReceiver = new PotionReceiver();
             IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemType.KEY);
@@ -241,7 +241,7 @@ namespace DesignPatternTests
         public void KeyReceiver_ProcessRequestExecption_Exception()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var receiver = new KeyReceiver();
             IItem item = ItemFactory.CreateItem("Potion", "Description", ItemType.POTION);
 

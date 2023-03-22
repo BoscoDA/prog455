@@ -21,6 +21,10 @@ namespace Week8AssignmentDesignPatterns.Models.Riddle
             Choices = new List<string>();
         }
 
+        /// <summary>
+        /// Adapter for the QuestionDatabank to allow function with objects of type Riddle
+        /// </summary>
+        /// <returns></returns>
         public override string PresentRiddle()
         {
             RiddlePrompt = bank.GetRiddle(RiddleNumber, RiddleType.MC);
@@ -38,6 +42,10 @@ namespace Week8AssignmentDesignPatterns.Models.Riddle
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Adapter for the QuestionDatabank to return the answer of the riddle
+        /// </summary>
+        /// <returns></returns>
         public override int GetAnswer()
         {
             return bank.GetAnswer(RiddleNumber);

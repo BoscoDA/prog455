@@ -7,6 +7,7 @@ using Week8AssignmentDesignPatterns.Enums;
 
 namespace Week8AssignmentDesignPatterns.Models.Riddles
 {
+    // Adaptee
     public class QuestionDataBank
     {
         public Dictionary<int, string> MultipleChoicePrompt = new Dictionary<int, string>()
@@ -41,6 +42,13 @@ namespace Week8AssignmentDesignPatterns.Models.Riddles
             {5, new List<string>(){ "River", "Fish", "Frog", "Snail" }}
         };
 
+        /// <summary>
+        /// Returns the riddle promt of the specified type of question
+        /// </summary>
+        /// <param name="riddleNum"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public string GetRiddle(int riddleNum, RiddleType type)
         {
             switch (type)
@@ -54,11 +62,23 @@ namespace Week8AssignmentDesignPatterns.Models.Riddles
 
         }
 
+        /// <summary>
+        /// Retrieves and returns the answer to the question
+        /// </summary>
+        /// <param name="riddleNum"></param>
+        /// <returns></returns>
         public int GetAnswer(int riddleNum)
         {
             return RiddleAnswers[riddleNum];
         }
 
+        /// <summary>
+        /// Retrieves and returns the choices to the question
+        /// </summary>
+        /// <param name="riddleNum"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public List<string> GetChoices(int riddleNum, RiddleType type)
         {
             switch (type)

@@ -11,11 +11,16 @@ namespace Week8AssignmentDesignPatterns
 {
     public class EyeballReceiver : Receiver
     {
+        /// <summary>
+        /// Processes requests of the ItemType EYEBALL and passes anyother request to the receivers next receiver.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <exception cref="ArgumentException">Execption is thrown is there is not receiver after this one.</exception>
         public override void ProcessRequest(IItem item)
         {
             if(item.Type == ItemType.EYEBALL)
             {
-                Player.Instance("").PickUpItem(item);
+                Player.Instance().PickUpItem(item);
 
                 Printer.Print($"{item.Name} added to player inventory", ConsoleColor.Gray);
             }

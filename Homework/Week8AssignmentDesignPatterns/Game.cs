@@ -26,13 +26,16 @@ namespace Week8AssignmentDesignPatterns.Models
 
         TimeSpan endTime = new TimeSpan(0, 5, 0);
 
+        /// <summary>
+        /// Main gameplay loop
+        /// </summary>
         private void GameLoop()
         {
             timer.StartTimer();
 
             while(!loseGame && player.Inventory.Count < 6)
             {
-                DisplayHud();
+                RefreshDisplay();
                 
                 GuessRiddle();
 
@@ -55,7 +58,10 @@ namespace Week8AssignmentDesignPatterns.Models
             Console.ReadKey();
         }
 
-        public void CheckLoseCondition()
+        /// <summary>
+        /// Updates the loseGame field based on losing conditions
+        /// </summary>
+        private void CheckLoseCondition()
         {
             if(timer.GetTime() < endTime && player.Lives > 0)
             {
@@ -67,9 +73,12 @@ namespace Week8AssignmentDesignPatterns.Models
             }
         }
 
+        /// <summary>
+        /// Sets up and launches the gameloop
+        /// </summary>
         public void Start()
         {
-            player = Player.Instance("Test");
+            player = Player.Instance();
             mansion = new Mansion();
             timer = GameTimer.GetInstance;
 
@@ -79,7 +88,10 @@ namespace Week8AssignmentDesignPatterns.Models
             GameLoop();
         }
 
-        public void GuessRiddle()
+        /// <summary>
+        /// Logic for player to guess the answer of the riddle
+        /// </summary>
+        private void GuessRiddle()
         {
             bool correct = false;
 
@@ -100,7 +112,7 @@ namespace Week8AssignmentDesignPatterns.Models
                 else
                 {
                     player.LoseLife();
-                    DisplayHud();
+                    RefreshDisplay();
 
                     Printer.Print("Incorrect! Please guess again!\n", ConsoleColor.Red);
                     
@@ -110,8 +122,12 @@ namespace Week8AssignmentDesignPatterns.Models
             }
         }
 
-        public void GameEnd()
+        /// <summary>
+        /// Outputs end game message
+        /// </summary>
+        private void GameEnd()
         {
+            DisplayHud();
             if(player.Lives == 0)
             {
                 Printer.Print("You ran out of lives...\nGame Over!", ConsoleColor.Red);
@@ -122,11 +138,15 @@ namespace Week8AssignmentDesignPatterns.Models
             }
             else
             {
+                Printer.Print("You managed to gather all 6 items!\n", ConsoleColor.Gray);
                 Printer.Print("You Win!", ConsoleColor.Green);
             }
         }
 
-        public void DisplayHud()
+        /// <summary>
+        /// All logic for the player hud (lives, inventory)
+        /// </summary>
+        private void DisplayHud()
         {
             Console.Clear();
 
@@ -149,6 +169,15 @@ namespace Week8AssignmentDesignPatterns.Models
             }
             Printer.Print("-------------------------------------\n\n", ConsoleColor.Magenta);
 
+            
+        }
+
+        /// <summary>
+        /// Handles updating all information presented on the screen
+        /// </summary>
+        private void RefreshDisplay()
+        {
+            DisplayHud();
             Printer.Print(mansion.DisplayFloor(), ConsoleColor.Magenta);
             Printer.Print(mansion.DisplayFloorRiddle(), ConsoleColor.White);
         }

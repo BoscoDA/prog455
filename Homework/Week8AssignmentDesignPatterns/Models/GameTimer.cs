@@ -13,6 +13,10 @@ namespace Week8AssignmentDesignPatterns
         private static Stopwatch timer;
         private static object locker = new object();
 
+        /// <summary>
+        /// Returns the singleton instance of the object
+        /// </summary>
+        /// <returns></returns>
         private static GameTimer Instance()
         {
             if(instance == null)
@@ -33,16 +37,26 @@ namespace Week8AssignmentDesignPatterns
 
         public static GameTimer GetInstance => Instance();
 
+        /// <summary>
+        /// Starts the timer
+        /// </summary>
         public void StartTimer()
         {
             timer.Start();
         }
 
+        /// <summary>
+        /// Stops the timer
+        /// </summary>
         public void StopTimer()
         {
             timer.Stop();
         }
 
+        /// <summary>
+        /// Returns the elapsed time as a timespan
+        /// </summary>
+        /// <returns></returns>
         public TimeSpan GetTime()
         {
             return timer.Elapsed;

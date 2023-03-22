@@ -10,11 +10,16 @@ namespace Week8AssignmentDesignPatterns.Models
 {
     public class KeyReceiver : Receiver
     {
+        /// <summary>
+        /// Processes requests of the ItemType KEY and passes anyother request to the receivers next receiver.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <exception cref="ArgumentException">Execption is thrown is there is not receiver after this one.</exception>
         public override void ProcessRequest(IItem item)
         {
             if (item.Type == ItemType.KEY)
             {
-                Player.Instance("").PickUpItem(item);
+                Player.Instance().PickUpItem(item);
                 Console.WriteLine($"{item.Name} added to player inventory");
             }
 

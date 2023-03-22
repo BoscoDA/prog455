@@ -10,20 +10,22 @@ namespace Week8AssignmentDesignPatterns
     {
         private static Player instance;
 
-        public string Name { get; private set; }
         public int Lives { get; private set; }
         public List<IItem> Inventory { get; private set; }
 
         private static object locker = new object();
 
-        private Player(string name)
+        private Player()
         {
-            Name = name;
             Lives = 5;
             Inventory = new List<IItem>();
         }
 
-        public static Player Instance(string name)
+        /// <summary>
+        /// Returns the singleton instance of the player object
+        /// </summary>
+        /// <returns></returns>
+        public static Player Instance()
         {
             if(instance == null)
             {
@@ -31,7 +33,7 @@ namespace Week8AssignmentDesignPatterns
                 {
                     if (instance == null)
                     {
-                        instance = new Player(name);
+                        instance = new Player();
                     }
                 }
             }
@@ -39,6 +41,9 @@ namespace Week8AssignmentDesignPatterns
             return instance;
         }
 
+        /// <summary>
+        /// Decrements the lives property by one
+        /// </summary>
         public void LoseLife()
         {
             if (Lives > 0)
@@ -47,6 +52,10 @@ namespace Week8AssignmentDesignPatterns
             }
         }
 
+        /// <summary>
+        /// Adds the item passed into the parameter to the player's inventory
+        /// </summary>
+        /// <param name="item"></param>
         public void PickUpItem(IItem item)
         {
             Inventory.Add(item);

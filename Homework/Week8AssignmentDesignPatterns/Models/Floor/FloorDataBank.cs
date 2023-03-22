@@ -41,6 +41,11 @@ namespace Week8AssignmentDesignPatterns.Models.Riddle
 
         };
 
+        /// <summary>
+        /// Retrieves and returns the proper RiddleType that the floor specified by the floor number inputted has.
+        /// </summary>
+        /// <param name="floorNumber"></param>
+        /// <returns></returns>
         public RiddleType GetRiddleType(int floorNumber)
         {
             return FloorsRiddleType[floorNumber];

@@ -9,6 +9,13 @@ namespace Week8AssignmentDesignPatterns.Models
 {
     public class FloorFactory
     {
+        /// <summary>
+        /// Factory method used for creating new objects that derive from the IFLoor interface.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="floorNumber"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static IFloor CreateFloor( FloorType type, int floorNumber)
         {
             IFloor floor;

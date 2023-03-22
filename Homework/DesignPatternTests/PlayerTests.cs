@@ -8,10 +8,10 @@ namespace DesignPatternTests
         public void Player_SingleInstance_Same()
         {
             //arrange
-            var expected = Player.Instance("Test");
+            var expected = Player.Instance();
 
             //act
-            var result = Player.Instance("Test");
+            var result = Player.Instance();
 
             //assert
             Assert.Same(expected, result);
@@ -21,7 +21,7 @@ namespace DesignPatternTests
         public void LoseLife_DecrementLife_Equal()
         {
             //arrange
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var expected = 4;
 
             //act
@@ -33,28 +33,13 @@ namespace DesignPatternTests
         }
 
         [Fact]
-        public void Player_ConstructorSetName_Equal()
-        {
-            //arrange
-            var input = "Test";
-
-            //act
-            var player = Player.Instance(input);
-            var result = player.Name;
-
-            //assert
-            Assert.Equal(input, result);
-
-        }
-
-        [Fact]
         public void Player_ConstructorSetLives_Equal()
         {
             //arrange
             var expected = 5;
 
             //act
-            var player = Player.Instance("Test");
+            var player = Player.Instance();
             var result = player.Lives;
 
             //assert
