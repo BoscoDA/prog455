@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Week8AssignmentDesignPatterns.Enums;
 using Week8AssignmentDesignPatterns.Models.Item;
+using Week8AssignmentDesignPatterns.Utilities;
 
 namespace Week8AssignmentDesignPatterns
 {
@@ -11,11 +13,11 @@ namespace Week8AssignmentDesignPatterns
     {
         public override void ProcessRequest(IItem item)
         {
-            if(item.Type == ItemFactory.ItemType.EYEBALL)
+            if(item.Type == ItemType.EYEBALL)
             {
                 Player.Instance("").PickUpItem(item);
 
-                Console.WriteLine($"{item.Name} added to player inventory");
+                Printer.Print($"{item.Name} added to player inventory", ConsoleColor.Gray);
             }
             else if(nextReceiver != null)
             {

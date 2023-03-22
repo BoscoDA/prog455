@@ -26,11 +26,12 @@ namespace Week8AssignmentDesignPatterns.Models
 
         public string DisplayFloor()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append($"Floor Number: {floors[currentFloor-1].FloorNumber} | {floors[currentFloor-1].Name} \n\n");
-            stringBuilder.Append($"{floors[currentFloor-1].Riddle.PresentRiddle()}{Environment.NewLine}");
+            return $"Floor: {floors[currentFloor - 1].FloorNumber} - {floors[currentFloor - 1].Name} \n\n";
+        }
 
-            return stringBuilder.ToString();
+        public string DisplayFloorRiddle()
+        {
+            return $"{floors[currentFloor - 1].Riddle.PresentRiddle()}{Environment.NewLine}";
         }
 
         public IItem GetItem()

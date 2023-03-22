@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Week8AssignmentDesignPatterns.Enums;
 using Week8AssignmentDesignPatterns.Models.Item;
 
 namespace Week8AssignmentDesignPatterns.Models
@@ -11,7 +12,7 @@ namespace Week8AssignmentDesignPatterns.Models
     {
         public override void ProcessRequest(IItem item)
         {
-            if (item.Type == ItemFactory.ItemType.POTION)
+            if (item.Type == ItemType.POTION)
             {
                 Player.Instance("").PickUpItem(item);
                 Console.WriteLine($"{item.Name} added to player inventory");

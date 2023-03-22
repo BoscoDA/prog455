@@ -12,7 +12,7 @@ namespace Week8AssignmentDesignPatterns.Models
         public static IFloor CreateFloor( FloorType type, int floorNumber)
         {
             IFloor floor;
-            InfoBank database = new InfoBank();
+            FloorDataBank database = new FloorDataBank();
 
             switch (type)
             {

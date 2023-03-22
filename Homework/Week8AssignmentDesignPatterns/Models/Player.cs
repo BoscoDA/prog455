@@ -41,7 +41,10 @@ namespace Week8AssignmentDesignPatterns
 
         public void LoseLife()
         {
-            Lives--;
+            if (Lives > 0)
+            {
+                Lives--;
+            }
         }
 
         public void PickUpItem(IItem item)

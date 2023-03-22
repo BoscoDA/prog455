@@ -68,18 +68,29 @@ namespace DesignPatternTests
             var floor = FloorFactory.CreateFloor(FloorType.MANSION, 1);
             var mansion = new Mansion();
 
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append($"Floor Number: {floor.FloorNumber} | {floor.Name} \n\n");
-            stringBuilder.Append($"{floor.Riddle.PresentRiddle()}{Environment.NewLine}");
-
-            var expected = stringBuilder.ToString();
+            var expected = $"Floor: {floor.FloorNumber} - {floor.Name} \n\n";
 
             //act
             var result = mansion.DisplayFloor();
 
             //assert
             Assert.Equal(expected, result);
+        }
 
+        [Fact]
+        public void Mansion_DisplayFloorRiddle_OutputString()
+        {
+            //arrange
+            var floor = FloorFactory.CreateFloor(FloorType.MANSION, 1);
+            var mansion = new Mansion();
+
+            var expected = $"{floor.Riddle.PresentRiddle()}{Environment.NewLine}";
+
+            //act
+            var result = mansion.DisplayFloorRiddle();
+
+            //assert
+            Assert.Equal(expected, result);
         }
     }
 }

@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Week8AssignmentDesignPatterns.Enums;
+using Week8AssignmentDesignPatterns.Models.Riddles;
 
 namespace Week8AssignmentDesignPatterns.Models.Riddle
 {
     public class MultipleChoice : Riddle
     {
         private int RiddleNumber;
-        private InfoBank bank;
+        private QuestionDataBank bank;
         private List<string> Choices;
 
         public MultipleChoice(int riddleNum)
         {
             RiddleNumber = riddleNum;
-            bank = new InfoBank();
+            bank = new QuestionDataBank();
             Choices = new List<string>();
         }
 
         public override string PresentRiddle()
         {
-            RiddlePrompt = bank.GetRiddle(RiddleNumber);
+            RiddlePrompt = bank.GetRiddle(RiddleNumber, RiddleType.MC);
             Choices = bank.GetChoices(RiddleNumber, RiddleType.MC);
 
             StringBuilder sb = new StringBuilder();

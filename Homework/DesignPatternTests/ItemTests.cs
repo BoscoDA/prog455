@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Week8AssignmentDesignPatterns;
+using Week8AssignmentDesignPatterns.Enums;
 using Week8AssignmentDesignPatterns.Models;
 using Week8AssignmentDesignPatterns.Models.Item;
 
@@ -12,10 +13,10 @@ namespace DesignPatternTests
     public class ItemTests
     {
         [Theory]
-        [InlineData(ItemFactory.ItemType.EYEBALL, typeof(Eyeball))]
-        [InlineData(ItemFactory.ItemType.POTION, typeof(Potion))]
-        [InlineData(ItemFactory.ItemType.KEY, typeof(Key))]
-        public void ItemFactory_CreateItem_ReceiveProperObject(ItemFactory.ItemType type, Type expected)
+        [InlineData(ItemType.EYEBALL, typeof(Eyeball))]
+        [InlineData(ItemType.POTION, typeof(Potion))]
+        [InlineData(ItemType.KEY, typeof(Key))]
+        public void ItemFactory_CreateItem_ReceiveProperObject(ItemType type, Type expected)
         {
             //arrange
             var Name = "Test";
@@ -85,7 +86,7 @@ namespace DesignPatternTests
             var player = Player.Instance("Test");
             var receiver = new PotionReceiver();
             var nextReceiver = new EyeballReceiver();
-            IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemFactory.ItemType.POTION);
+            IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemType.POTION);
             receiver.SetNextReceiver(nextReceiver);
 
             //act
@@ -102,7 +103,7 @@ namespace DesignPatternTests
             var player = Player.Instance("Test");
             var receiver = new EyeballReceiver();
             var nextReceiver = new PotionReceiver();
-            IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemFactory.ItemType.POTION);
+            IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemType.POTION);
             receiver.SetNextReceiver(nextReceiver);
 
             //act
@@ -118,7 +119,7 @@ namespace DesignPatternTests
             //arrange
             var player = Player.Instance("Test");
             var receiver = new PotionReceiver();
-            IItem item = ItemFactory.CreateItem("Red Key", "Description", ItemFactory.ItemType.KEY);
+            IItem item = ItemFactory.CreateItem("Red Key", "Description", ItemType.KEY);
 
             //act
 
@@ -147,7 +148,7 @@ namespace DesignPatternTests
             var player = Player.Instance("Test");
             var receiver = new EyeballReceiver();
             var nextReceiver = new KeyReceiver();
-            IItem item = ItemFactory.CreateItem("Human Eyeball", "Description", ItemFactory.ItemType.EYEBALL);
+            IItem item = ItemFactory.CreateItem("Human Eyeball", "Description", ItemType.EYEBALL);
             receiver.SetNextReceiver(nextReceiver);
 
             //act
@@ -164,7 +165,7 @@ namespace DesignPatternTests
             var player = Player.Instance("Test");
             var receiver = new EyeballReceiver();
             var nextReceiver = new PotionReceiver();
-            IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemFactory.ItemType.POTION);
+            IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemType.POTION);
             receiver.SetNextReceiver(nextReceiver);
 
             //act
@@ -180,7 +181,7 @@ namespace DesignPatternTests
             //arrange
             var player = Player.Instance("Test");
             var receiver = new EyeballReceiver();
-            IItem item = ItemFactory.CreateItem("Potion", "Description", ItemFactory.ItemType.POTION);
+            IItem item = ItemFactory.CreateItem("Potion", "Description", ItemType.POTION);
 
             //act
 
@@ -209,7 +210,7 @@ namespace DesignPatternTests
             var player = Player.Instance("Test");
             var receiver = new KeyReceiver();
             var nextReceiver = new PotionReceiver();
-            IItem item = ItemFactory.CreateItem("Master Key", "Description", ItemFactory.ItemType.KEY);
+            IItem item = ItemFactory.CreateItem("Master Key", "Description", ItemType.KEY);
             receiver.SetNextReceiver(nextReceiver);
 
             //act
@@ -226,7 +227,7 @@ namespace DesignPatternTests
             var player = Player.Instance("Test");
             var receiver = new KeyReceiver();
             var nextReceiver = new PotionReceiver();
-            IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemFactory.ItemType.KEY);
+            IItem item = ItemFactory.CreateItem("Red Potion", "Description", ItemType.KEY);
             receiver.SetNextReceiver(nextReceiver);
 
             //act
@@ -242,7 +243,7 @@ namespace DesignPatternTests
             //arrange
             var player = Player.Instance("Test");
             var receiver = new KeyReceiver();
-            IItem item = ItemFactory.CreateItem("Potion", "Description", ItemFactory.ItemType.POTION);
+            IItem item = ItemFactory.CreateItem("Potion", "Description", ItemType.POTION);
 
             //act
 

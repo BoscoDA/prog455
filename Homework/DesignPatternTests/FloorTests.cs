@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Week8AssignmentDesignPatterns.Enums;
 using Week8AssignmentDesignPatterns.Models;
 using Week8AssignmentDesignPatterns.Models.Riddle;
 
@@ -47,7 +48,6 @@ namespace DesignPatternTests
             //arrange
 
             var floorNum = 1;
-            var riddle = RiddleType.MC;
 
             //act
             var result = FloorFactory.CreateFloor(FloorType.MANSION, floorNum);

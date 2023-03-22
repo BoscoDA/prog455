@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Week8AssignmentDesignPatterns.Enums;
 using static Week8AssignmentDesignPatterns.ItemFactory;
 
 namespace Week8AssignmentDesignPatterns

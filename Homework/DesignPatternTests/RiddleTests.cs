@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Week8AssignmentDesignPatterns.Enums;
 using Week8AssignmentDesignPatterns.Models.Riddle;
+using Week8AssignmentDesignPatterns.Models.Riddles;
 
 namespace DesignPatternTests
 {
@@ -26,13 +28,14 @@ namespace DesignPatternTests
         public void MultipleChoice_PresentRiddle_Equals()
         {
             //arrange
-            var bank = new InfoBank();
+            var questionBank = new QuestionDataBank();
+            var floorBank = new FloorDataBank();
             var RiddleNumber = 1;
 
             var riddle = new MultipleChoice(RiddleNumber);
 
-            var RiddlePrompt = bank.GetRiddle(RiddleNumber);
-            var Choices = bank.GetChoices(RiddleNumber, RiddleType.MC);
+            var RiddlePrompt = questionBank.GetRiddle(RiddleNumber, RiddleType.MC);
+            var Choices = questionBank.GetChoices(RiddleNumber, RiddleType.MC);
 
             StringBuilder sb = new StringBuilder();
             sb.Append(RiddlePrompt + "\n");
@@ -55,7 +58,7 @@ namespace DesignPatternTests
         public void MultipleChoice_GetAnswer_Equals()
         {
             //arrange
-            var bank = new InfoBank();
+            var bank = new QuestionDataBank();
             var RiddleNumber = 1;
 
             var riddle = new MultipleChoice(RiddleNumber);
@@ -73,12 +76,12 @@ namespace DesignPatternTests
         public void TrueFalse_PresentRiddle_Equals()
         {
             //arrange
-            var bank = new InfoBank();
-            var RiddleNumber = 1;
+            var bank = new QuestionDataBank();
+            var RiddleNumber = 2;
 
             var riddle = new TrueFalse(RiddleNumber);
 
-            var RiddlePrompt = bank.GetRiddle(RiddleNumber);
+            var RiddlePrompt = bank.GetRiddle(RiddleNumber, RiddleType.TF);
             var Choices = bank.RiddleChoices[0];
 
             StringBuilder sb = new StringBuilder();
@@ -102,7 +105,7 @@ namespace DesignPatternTests
         public void TrueFalse_GetAnswer_Equals()
         {
             //arrange
-            var bank = new InfoBank();
+            var bank = new QuestionDataBank();
             var RiddleNumber = 1;
 
             var riddle = new TrueFalse(RiddleNumber);
