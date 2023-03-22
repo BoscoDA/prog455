@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Models\Floor\IFloor.cs" />
     <Compile Include="Models\Floor\FloorBase.cs" />
-    <Compile Include="Models\Game.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Models\Item\Chain of Response\EyeballReceiver.cs" />
     <Compile Include="Models\Item\Eyeball.cs" />
     <Compile Include="Models\Item\IItem.cs" />
