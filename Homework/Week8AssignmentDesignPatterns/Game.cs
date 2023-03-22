@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Xml.Linq;
 using Week8AssignmentDesignPatterns.Models.Item;
+using Week8AssignmentDesignPatterns.Utilities;
 
 namespace Week8AssignmentDesignPatterns.Models
 {
@@ -21,8 +24,7 @@ namespace Week8AssignmentDesignPatterns.Models
 
         bool loseGame = false;
 
-        TimeSpan endTime = new TimeSpan(0,5,0);
-
+        TimeSpan endTime = new TimeSpan(0, 5, 0);
 
         private void GameLoop()
         {
@@ -30,11 +32,14 @@ namespace Week8AssignmentDesignPatterns.Models
 
             while(!loseGame && player.Inventory.Count < 6)
             {
-                Console.WriteLine(mansion.DisplayFloor());
-
+                DisplayHud();
+                
                 GuessRiddle();
 
                 eyeballReceiver.ProcessRequest(mansion.GetItem());
+
+                Printer.Print("\nPress any key to continue to the next floor...", ConsoleColor.Yellow);
+                Console.ReadKey();
 
                 mansion.LoadNextFloor();
 
@@ -45,7 +50,7 @@ namespace Week8AssignmentDesignPatterns.Models
 
             timer.StopTimer();
 
-            Console.WriteLine(GameEnd());
+            GameEnd();
 
             Console.ReadKey();
         }
@@ -80,43 +85,72 @@ namespace Week8AssignmentDesignPatterns.Models
 
             while (!correct && !loseGame)
             {
-                Console.WriteLine("Enter the number of your selection: ");
+
+
+                Printer.Print("\nEnter the number of your selection: ", ConsoleColor.Yellow);
 
                 string input = Console.ReadLine();
                 string answer = mansion.GetRiddleAnswer().ToString();
 
                 if (input == answer)
                 {
-                    Console.WriteLine("Correct!\n");
+                    Printer.Print("\nCorrect!\n", ConsoleColor.Green);
                     correct = true;
                 }
                 else
                 {
-                    Console.WriteLine("Incorrect! Please guess again!\n");
                     player.LoseLife();
+                    DisplayHud();
+
+                    Printer.Print("Incorrect! Please guess again!\n", ConsoleColor.Red);
+                    
                 }
 
                 CheckLoseCondition();
             }
         }
 
-        public string GameEnd()
+        public void GameEnd()
         {
-            string endGameOutput;
             if(player.Lives == 0)
             {
-                endGameOutput = "You ran out of lives...\nGame Over!";
+                Printer.Print("You ran out of lives...\nGame Over!", ConsoleColor.Red);
             }
             else if (timer.GetTime() >= endTime)
             {
-                endGameOutput = "Time is up...\nGame Over!";
+                Printer.Print("Time is up...\nGame Over!", ConsoleColor.Red);
             }
             else
             {
-                endGameOutput = "You Win!";
+                Printer.Print("You Win!", ConsoleColor.Green);
             }
+        }
 
-            return endGameOutput;
+        public void DisplayHud()
+        {
+            Console.Clear();
+
+            Printer.Print("Lives: ", ConsoleColor.Magenta);
+            for(int i = 1; i <= player.Lives; i++)
+            {
+                Printer.Print("\u2665", ConsoleColor.Red);
+            }
+            Printer.Print("\n", ConsoleColor.Magenta);
+
+
+            Printer.Print("--------------Inventory--------------\n", ConsoleColor.Magenta);
+            int inventoryCounter = 1;
+            foreach (IItem i in player.Inventory)
+            {
+                Printer.Print($"{inventoryCounter}.) {i.Name}: ", ConsoleColor.White);
+                Printer.Print($"{i.Description}\n", ConsoleColor.Gray);
+
+                inventoryCounter++;
+            }
+            Printer.Print("-------------------------------------\n\n", ConsoleColor.Magenta);
+
+            Printer.Print(mansion.DisplayFloor(), ConsoleColor.Magenta);
+            Printer.Print(mansion.DisplayFloorRiddle(), ConsoleColor.White);
         }
     }
 }

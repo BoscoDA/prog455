@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\ItemType.cs" />
+    <Compile Include="Enums\RiddleTypeEnum.cs" />
     <Compile Include="Models\Floor\IFloor.cs" />
     <Compile Include="Models\Floor\FloorBase.cs" />
     <Compile Include="Game.cs" />
@@ -60,13 +62,15 @@
     <Compile Include="Models\Floor\FloorFactory.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Item\Potion.cs" />
-    <Compile Include="Models\InfoBank.cs" />
+    <Compile Include="Models\Floor\FloorDataBank.cs" />
     <Compile Include="Models\Riddles\MultipleChoice.cs" />
+    <Compile Include="Models\Riddles\QuestionDataBank.cs" />
     <Compile Include="Models\Riddles\TrueFalse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Models\Riddles\Riddle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\GameTimer.cs" />
+    <Compile Include="Utilities\Printer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
