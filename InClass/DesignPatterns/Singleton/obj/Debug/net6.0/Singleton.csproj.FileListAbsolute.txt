@@ -1,0 +1,15 @@
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\bin\Debug\net6.0\Singleton.exe
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\bin\Debug\net6.0\Singleton.deps.json
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\bin\Debug\net6.0\Singleton.runtimeconfig.json
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\bin\Debug\net6.0\Singleton.dll
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\bin\Debug\net6.0\Singleton.pdb
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\Singleton.csproj.AssemblyReference.cache
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\Singleton.GeneratedMSBuildEditorConfig.editorconfig
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\Singleton.AssemblyInfoInputs.cache
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\Singleton.AssemblyInfo.cs
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\Singleton.csproj.CoreCompileInputs.cache
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\Singleton.dll
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\refint\Singleton.dll
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\Singleton.pdb
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\Singleton.genruntimeconfig.cache
+C:\workspace\src\prog455\InClass\DesignPatterns\Singleton\obj\Debug\net6.0\ref\Singleton.dll
