@@ -19,33 +19,56 @@ namespace Week3Databases.Controllers
         // GET: Characters
         public ActionResult Index()
         {
-            var characters = CharacterService.ReturnCharacterList();
+            try
+            {
+                var characters = CharacterService.ReturnCharacterList();
 
-            return View(characters);
+                return View(characters);
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex);
+            }
+            
         }
 
         // GET: Characters/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                Character character = CharacterService.ReturnCharacter(id);
+
+                if (character == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(character);
             }
-
-            Character character = CharacterService.ReturnCharacter(id);
-
-            if (character == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                return View("Error", ex);
             }
-
-            return View(character);
+            
         }
 
         // GET: Characters/Create
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                return View(new Character());
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex);
+            }
         }
 
         // POST: Characters/Create
@@ -55,31 +78,47 @@ namespace Week3Databases.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,Element_Type,Job_Class,ATK,DEF,Mana,HP_Initial,HP_Max,NPC")] Character character)
         {
-            if (ModelState.IsValid)
+            try
             {
-                CharacterService.CreateCharacter(character);
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    CharacterService.CreateCharacter(character);
+                    return RedirectToAction("Index");
+                }
 
-            return View(character);
+                return View(character);
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex);
+            }
+            
         }
 
         // GET: Characters/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                Character character = CharacterService.ReturnCharacter(id);
+
+                if (character == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(character);
             }
-
-            Character character = CharacterService.ReturnCharacter(id);
-
-            if (character == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                return View("Error", ex);
             }
-
-            return View(character);
+            
         }
 
         // POST: Characters/Edit/5
@@ -89,31 +128,46 @@ namespace Week3Databases.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,Element_Type,Job_Class,ATK,DEF,Mana,HP_Initial,HP_Max,NPC")] Character character)
         {
-            if (ModelState.IsValid)
+            try
             {
-                CharacterService.EditCharacter(character);
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    CharacterService.EditCharacter(character);
+                    return RedirectToAction("Index");
+                }
 
-            return View(character);
+                return View(character);
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex);
+            }
+            
         }
 
         // GET: Characters/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                Character character = CharacterService.ReturnCharacter(id);
+
+                if (character == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(character);
             }
-
-            Character character = CharacterService.ReturnCharacter(id);
-
-            if (character == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                return View("Error", ex);
             }
-
-            return View(character);
         }
 
         // POST: Characters/Delete/5
@@ -121,9 +175,16 @@ namespace Week3Databases.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CharacterService.DeleteCharacter(id);
+            try
+            {
+                CharacterService.DeleteCharacter(id);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View("Error", ex);
+            }
         }
 
         protected override void Dispose(bool disposing)
