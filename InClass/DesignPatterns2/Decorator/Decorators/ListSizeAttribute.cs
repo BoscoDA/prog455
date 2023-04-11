@@ -21,8 +21,8 @@ AllowMultiple = false, Inherited = true)]
         {
             if (value == null || value is not List<object> || ((List<object>)value).Count() > MaxItems)
             {
-                return false;
                 // can set error message here
+                return false;
             }
             return true;
         }
