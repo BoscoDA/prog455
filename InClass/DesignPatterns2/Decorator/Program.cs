@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 new BuiltIn().Run(new Player());
 
-new BuiltIn().Run(new Player() { Inventory = new List<string>() { "Sword", "Shield", "Boots" } });
+new BuiltIn().Run(new Player() { Inventory = new List<string>() { "Sword", "Shield"} });
 
 
 Console.ReadKey();

@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 namespace Week10DesignPatternII.Decorators
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-    public class InventorySizeAttribute : ValidationAttribute
+    public class RequiredAttribute : ValidationAttribute
     {
-        public int MaxItems { get; set; }
-
         public override bool IsValid(object? value)
         {
-            if(value == null || value is not List<IItem> || ((List<IItem>)value).Count() > MaxItems){
-                ErrorMessage = $"Player can't carry more than {MaxItems} items in their inventory.";
+            if (value == null)
+            {
+
                 return false;
             }
+
             return true;
         }
     }

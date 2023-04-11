@@ -8,23 +8,23 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Nick\\.nuget\\packages\\": {},
+    "C:\\Users\\nickw\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Workspace\\src\\prog455\\Homework\\Week10DesignPatternII\\Week10DesignPatternII.csproj",
+      "projectUniqueName": "C:\\workspace\\src\\prog455\\Homework\\Week10DesignPatternII\\Week10DesignPatternII.csproj",
       "projectName": "Week10DesignPatternII",
-      "projectPath": "E:\\Workspace\\src\\prog455\\Homework\\Week10DesignPatternII\\Week10DesignPatternII.csproj",
-      "packagesPath": "C:\\Users\\Nick\\.nuget\\packages\\",
-      "outputPath": "E:\\Workspace\\src\\prog455\\Homework\\Week10DesignPatternII\\obj\\",
+      "projectPath": "C:\\workspace\\src\\prog455\\Homework\\Week10DesignPatternII\\Week10DesignPatternII.csproj",
+      "packagesPath": "C:\\Users\\nickw\\.nuget\\packages\\",
+      "outputPath": "C:\\workspace\\src\\prog455\\Homework\\Week10DesignPatternII\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Nick\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nickw\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

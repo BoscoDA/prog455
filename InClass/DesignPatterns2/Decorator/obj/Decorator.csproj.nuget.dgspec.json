@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\Decorator.csproj": {}
+    "C:\\workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\Decorator.csproj": {}
   },
   "projects": {
-    "E:\\Workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\Decorator.csproj": {
+    "C:\\workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\Decorator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\Decorator.csproj",
+        "projectUniqueName": "C:\\workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\Decorator.csproj",
         "projectName": "Decorator",
-        "projectPath": "E:\\Workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\Decorator.csproj",
-        "packagesPath": "C:\\Users\\Nick\\.nuget\\packages\\",
-        "outputPath": "E:\\Workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\obj\\",
+        "projectPath": "C:\\workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\Decorator.csproj",
+        "packagesPath": "C:\\Users\\nickw\\.nuget\\packages\\",
+        "outputPath": "C:\\workspace\\src\\prog455\\InClass\\DesignPatterns2\\Decorator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Nick\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nickw\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
