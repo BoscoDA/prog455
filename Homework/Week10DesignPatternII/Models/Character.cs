@@ -37,6 +37,10 @@ namespace Week10DesignPatternII.Models
             DepthDived = 0;
         }
 
+        /// <summary>
+        /// Updates user on a change of state of the subject
+        /// </summary>
+        /// <param name="pressure"></param>
         public void Update(WaterPressure pressure)
         {
             HP -= pressure.actualWaterPressureDamage;

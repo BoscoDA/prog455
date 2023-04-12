@@ -22,6 +22,10 @@ namespace Week10DesignPatternII.Utilities
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Method for printing a message prompting a need for input to progress
+        /// </summary>
+        /// <param name="message"></param>
         public static void WaitForInput(string message)
         {
             ConsoleColor previousColor = Console.ForegroundColor;

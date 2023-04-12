@@ -13,6 +13,11 @@ namespace Week10DesignPatternII.Services
 {
     public class CharacterService
     {
+        /// <summary>
+        /// Validates the player passed in and outputs any errors encountered
+        /// </summary>
+        /// <param name="character"></param>
+        /// <returns></returns>
         public List<ValidationResult> ValidateCharacter(ICharacter character)
         {
             List<ValidationResult> errors = new List<ValidationResult>();
@@ -33,11 +38,21 @@ namespace Week10DesignPatternII.Services
             return errors;
         }
 
+        /// <summary>
+        /// Handles setting the name of the character passed in.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="character"></param>
         public void SetName(string name, ICharacter character)
         {
             character.Name = name;
         }
 
+        /// <summary>
+        /// Sets the uniform color of the character passed in
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="character"></param>
         public void SetJerseyColor(string color, ICharacter character)
         {
             switch (color)
@@ -59,11 +74,20 @@ namespace Week10DesignPatternII.Services
             }
         }
 
+        /// <summary>
+        /// Sets the value of the character's gem stone
+        /// </summary>
+        /// <param name="gem"></param>
+        /// <param name="character"></param>
         public void SetGemStone(string gem, ICharacter character)
         {
             character.GemStone = gem;
         }
 
+        /// <summary>
+        /// Updates states based off of the items in the players inventory
+        /// </summary>
+        /// <param name="character"></param>
         public void SetStats(ICharacter character)
         {
             foreach(var item in character.Inventory)
@@ -84,11 +108,20 @@ namespace Week10DesignPatternII.Services
             
         }
 
+        /// <summary>
+        /// Adds a item to the player's inventory
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="character"></param>
         public void AddItemToInventory(IItem item, ICharacter character)
         {
             character.Inventory.Add(item);
         }
 
+        /// <summary>
+        /// Clears the players inventory
+        /// </summary>
+        /// <param name="character"></param>
         public void ClearInventory(ICharacter character)
         {
             character.Inventory.Clear();

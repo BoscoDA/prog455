@@ -21,6 +21,10 @@ namespace Week10DesignPatternII.Models.Items
             Type = type;
         }
 
+        /// <summary>
+        /// Returns a display string for the item
+        /// </summary>
+        /// <returns></returns>
         public string Display()
         {
             StringBuilder sb = new StringBuilder();

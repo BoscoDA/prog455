@@ -19,14 +19,20 @@ namespace Week10DesignPatternII
     {
         private List<IItem> items = new List<IItem>();
         private CharacterService service = new CharacterService();
-
+        /// <summary>
+        /// Runs the game
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="cpu"></param>
         public void Start(T player, U cpu)
         {
             Menu();
             Gameloop(player, cpu);
             Printer.WaitForInput("\nPress any key to exit the game... ");
         }
-
+        /// <summary>
+        /// Displays instruction to the screen
+        /// </summary>
         private void Menu()
         {
             Printer.Print("See if you can out dive the CPU.\n\n" +
@@ -37,12 +43,21 @@ namespace Week10DesignPatternII
 
             Console.Clear();
         }
+        /// <summary>
+        /// Launchs the game's gameplay loop
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="cpu"></param>
         private void Gameloop(ICharacter player, ICharacter cpu)
         {
             Setup(player, cpu);
             Play(player, cpu);
         }
-
+        /// <summary>
+        /// Handles all the game setup up logic (Character Creatation(), SetUpCPU(), PopulateItems() and set player stats)
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="cpu"></param>
         private void Setup(ICharacter player, ICharacter cpu)
         {
             PopulateItems();
@@ -52,7 +67,11 @@ namespace Week10DesignPatternII
             CharacterCreation(player, null);
             service.SetStats(player);
         }
-
+        /// <summary>
+        /// Handles logic for the play to set their name, uniform color, gem stone type and choose items
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="error"></param>
         private void CharacterCreation(ICharacter player, List<ValidationResult>? error)
         {
             if(error == null || error.Exists(x => x.MemberNames.Contains("Name")))
@@ -94,18 +113,23 @@ namespace Week10DesignPatternII
                 CharacterCreation(player, errors);
             }
         }
-
+        /// <summary>
+        /// Sets up all important values of the CPU
+        /// </summary>
+        /// <param name="cpu"></param>
         private void SetUpCPU(ICharacter cpu)
         {
-            cpu.Name = "Dave";
-            cpu.GemStone = "Emerald";
+            service.SetName("Dave", cpu);
+            service.SetGemStone("emerald", cpu);
             cpu.UniformColor = ConsoleColor.Cyan;
-            cpu.Inventory.Add(items[new Random().Next(0, items.Count)]);
-            cpu.Inventory.Add(items[new Random().Next(0, items.Count)]);
+            service.AddItemToInventory(items[new Random().Next(0, items.Count)],cpu);
+            service.AddItemToInventory(items[new Random().Next(0, items.Count)], cpu);
 
             service.SetStats(cpu);
         }
-
+        /// <summary>
+        /// Populates the items lists with all items needed for the game
+        /// </summary>
         private void PopulateItems()
         {
             items.Add(new Item("Iron Boots", "Boots made of iron.\n\nStat Effects:\n+30 Weight", 30, "Boot"));
@@ -116,7 +140,10 @@ namespace Week10DesignPatternII
             items.Add(new Item("Wet Suit", "A typical wet suit.\n\nStat Effects:\n-50 Weight\n-50 HP", -50, "Suit"));
             items.Add(new Item("Reinforced Wet Suit", "A strong wet suit that can stand up to water pressure better.\n\nStat Effects:\n+25 Weight\n+25 HP", 25, "Suit"));
         }
-
+        /// <summary>
+        /// Handles logic for player to browse and choose items
+        /// </summary>
+        /// <param name="character"></param>
         private void ChooseItems(ICharacter character)
         {
             bool exit = false;
@@ -153,7 +180,11 @@ namespace Week10DesignPatternII
                 Console.Clear();
             }
         }
-
+        /// <summary>
+        /// Kicks off the gameplay portion of the class
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="cpu"></param>
         private void Play(ICharacter player, ICharacter cpu)
         {
             WaterPressure pressure = new WaterPressure();
@@ -163,7 +194,12 @@ namespace Week10DesignPatternII
                 PlayRound(player, cpu, pressure);
             }
         }
-
+        /// <summary>
+        /// Handles logic to play a full round of the game. Player goes, CPU goes and water pressure damage inflicted
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="cpu"></param>
+        /// <param name="pressure"></param>
         private void PlayRound(ICharacter player, ICharacter cpu, WaterPressure pressure)
         {
             TakeTurn(player, pressure);
@@ -174,6 +210,11 @@ namespace Week10DesignPatternII
             DisplayHud(player, cpu);
         }
 
+        /// <summary>
+        /// Handles making the passed in character dive a certain number of feet
+        /// </summary>
+        /// <param name="character"></param>
+        /// <param name="pressure"></param>
         private void TakeTurn(ICharacter character, WaterPressure pressure)
         {
             if(character.HP > 0)
@@ -189,6 +230,11 @@ namespace Week10DesignPatternII
             }
         }
 
+        /// <summary>
+        /// Displays score screen comparing player and cpu health and depth dived
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="cpu"></param>
         private void DisplayHud(ICharacter player, ICharacter cpu)
         {
             Printer.Print($"\n{player.Name} | HP: {player.HP} |Depth Dived: {player.DepthDived}", ConsoleColor.Magenta);

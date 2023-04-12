@@ -14,6 +14,11 @@ namespace Week10DesignPatternII.Models
 
         public int actualWaterPressureDamage;
 
+        /// <summary>
+        /// Damages subscribers
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
         public void DealDamage(int min = 1, int max = 6)
         {
             maxDamage = max;
@@ -23,6 +28,9 @@ namespace Week10DesignPatternII.Models
             Notify();
         }
 
+        /// <summary>
+        /// Notifies subscribers that damage is to be done to them
+        /// </summary>
         public void Notify()
         {
             foreach (var character in characters)
@@ -35,6 +43,10 @@ namespace Week10DesignPatternII.Models
             }
         }
 
+        /// <summary>
+        /// Subscribes a observer to the subject
+        /// </summary>
+        /// <param name="character"></param>
         public void Attach(ICharacter character)
         {
             if (!characters.Contains(character))
@@ -43,6 +55,10 @@ namespace Week10DesignPatternII.Models
             }
         }
 
+        /// <summary>
+        /// Unsubscribes a observer from the subject
+        /// </summary>
+        /// <param name="character"></param>
         public void Remove(ICharacter character)
         {
             characters.Remove(character);
