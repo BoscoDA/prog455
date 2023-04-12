@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Week10DesignPatternII.Models.Items;
 
 namespace Week10DesignPatternII.Decorators
 {

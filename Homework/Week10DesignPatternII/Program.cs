@@ -1,4 +1,6 @@
-﻿namespace Week10DesignPatternII
+﻿using Week10DesignPatternII.Models;
+
+namespace Week10DesignPatternII
 {
     internal class Program
     {
@@ -9,8 +11,6 @@
 
             Game<Character, Character> game = new Game<Character, Character>();
             game.Start(player, cpu);
-
-            Console.ReadKey();
         }
     }
 }

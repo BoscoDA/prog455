@@ -6,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Week10DesignPatternII.Models;
 
-namespace Week10DesignPatternII
+namespace Week10DesignPatternII.Services
 {
     public class CharacterService
     {
@@ -41,20 +42,45 @@ namespace Week10DesignPatternII
             switch (color)
             {
                 case "1":
-                    character.UniformColor = ConsoleColor.Red;
+                    character.UniformColor = ConsoleColor.DarkBlue;
                     break;
                 case "2":
-                    character.UniformColor = ConsoleColor.Blue;
+                    character.UniformColor = ConsoleColor.DarkGreen;
                     break;
                 case "3":
-                    character.UniformColor = ConsoleColor.Green;
+                    character.UniformColor = ConsoleColor.DarkCyan;
                     break;
                 case "4":
-                    character.UniformColor = ConsoleColor.Yellow;
+                    character.UniformColor = ConsoleColor.DarkRed;
                     break;
                 default:
                     break;
             }
+        }
+
+        public void SetGemStone(string gem, ICharacter character)
+        {
+            character.GemStone = gem;
+        }
+
+        public void SetStats(ICharacter character)
+        {
+            foreach(var item in character.Inventory)
+            {
+                switch (item.Type)
+                {
+                    case "Boot":
+                        character.Weight += item.StatChange;
+                        break;
+                    case "Suit":
+                        character.Weight += item.StatChange;
+                        character.HP += item.StatChange;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
         }
     }
 }
