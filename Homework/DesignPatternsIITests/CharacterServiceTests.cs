@@ -124,5 +124,62 @@ namespace DesignPatternsIITests
             //assert
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void CharacterService_ValidateCharacterNoErrors_Equal()
+        {
+            //arrange
+            CharacterService service = new CharacterService();
+            Character character = new Character();
+            character.Inventory.Add(new Item("Test", "Test", 25, "Test"));
+            character.Inventory.Add(new Item("Test", "Test", 25, "Test"));
+            character.Name = "Test";
+            character.UniformColor = ConsoleColor.Blue;
+            character.GemStone = "ruby";
+            var expected = 0;
+
+            //act
+            var result = service.ValidateCharacter(character).Count;
+            //assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void CharacterService_ClearInventory_Equal()
+        {
+            //arrange
+            CharacterService service = new CharacterService();
+            Character character = new Character();
+            character.Inventory.Add(new Item("Test", "Test", 25, "Test"));
+            character.Inventory.Add(new Item("Test", "Test", 25, "Test"));
+            character.Inventory.Add(new Item("Test", "Test", 25, "Test"));
+
+            var expected = 0;
+
+            //act
+            service.ClearInventory(character);
+            //assert
+            Assert.Equal(expected, character.Inventory.Count);
+        }
+
+        [Fact]
+        public void CharacterService_AddItemToInventory_Equal()
+        {
+            //arrange
+            CharacterService service = new CharacterService();
+            Character character = new Character();
+            Item item1 = new Item("Test", "Test", 25, "Test");
+            Item item2 = new Item("Test", "Test", 25, "Test");
+            Item item3 = new Item("Test", "Test", 25, "Test");
+
+            var expected = 3;
+
+            //act
+            service.AddItemToInventory(item1, character);
+            service.AddItemToInventory(item2, character);
+            service.AddItemToInventory(item3, character);
+            //assert
+            Assert.Equal(expected, character.Inventory.Count);
+        }
     }
 }

@@ -14,7 +14,7 @@ using Week10DesignPatternII.Utilities;
 
 namespace Week10DesignPatternII
 {
-    internal class Game<T, U> where T : ICharacter
+    public class Game<T, U> where T : ICharacter
                               where U : ICharacter
     {
         private List<IItem> items = new List<IItem>();
@@ -81,7 +81,7 @@ namespace Week10DesignPatternII
 
             if(error == null || error.Exists(x => x.MemberNames.Contains("Inventory")))
             {
-                player.Inventory.Clear();
+                service.ClearInventory(player);
                 ChooseItems(player);
             }
 
@@ -89,6 +89,8 @@ namespace Week10DesignPatternII
 
             if (errors.Count > 0)
             {
+                Printer.WaitForInput("Press any key to correct the above errors...");
+                Console.Clear();
                 CharacterCreation(player, errors);
             }
         }
@@ -131,7 +133,7 @@ namespace Week10DesignPatternII
                 switch (selection)
                 {
                     case "1":
-                        character.Inventory.Add(items[itemIndex]);
+                        service.AddItemToInventory(items[itemIndex], character);
                         break;
                     case "2":
                         itemIndex++;

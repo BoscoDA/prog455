@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Week10DesignPatternII.Models;
+using Week10DesignPatternII.Models.Items;
 
 namespace Week10DesignPatternII.Services
 {
@@ -81,6 +82,16 @@ namespace Week10DesignPatternII.Services
                 }
             }
             
+        }
+
+        public void AddItemToInventory(IItem item, ICharacter character)
+        {
+            character.Inventory.Add(item);
+        }
+
+        public void ClearInventory(ICharacter character)
+        {
+            character.Inventory.Clear();
         }
     }
 }
