@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GameStatsModel>
+@{
+    ViewData["Title"] = "Game Stats";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GameId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlayerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectAnswer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Attempts)
+        </th>
+ 
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.GameId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PlayerName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Duration)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CorrectAnswer)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Attempts)
+    </td>
+    
+</tr>
+}
+
+</table>
