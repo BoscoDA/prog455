@@ -91,7 +91,7 @@ namespace Generics
 
         }
 
-        private void Action(IPlayer attacker, IPlayer defender)
+       private void Action(IPlayer attacker, IPlayer defender)
         {
 
             var damage = rand.Next(attacker.ATK / (defender.DEF*2), attacker.ATK / defender.DEF);
@@ -104,7 +104,7 @@ namespace Generics
             
         }
 
-        private int CleanUpHP(IPlayer attackedPlayer)
+       private int CleanUpHP(IPlayer attackedPlayer)
         {
            return attackedPlayer.HP >0 ? attackedPlayer.HP : 0;
         }
