@@ -35,7 +35,7 @@ namespace Week10DesignPatternII
             Gameloop(player, cpu);
 
             //Update final player state to the database using the API
-            _dataService.APIInsertRecord(CreateRecord(player));
+            _dataService.APIUpdateRecord(CreateRecord(player));
 
             Printer.WaitForInput("\nPress any key to exit the game... ");
         }
@@ -257,6 +257,7 @@ namespace Week10DesignPatternII
         private RecordModel CreateRecord(ICharacter character)
         {
             RecordModel record = new RecordModel();
+            record.Id = character.Id.ToString();
             record.Name = character.Name;
             record.UniformColor = (int)character.UniformColor;
             record.Weight = character.Weight;

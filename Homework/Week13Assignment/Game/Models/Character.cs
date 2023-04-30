@@ -13,6 +13,8 @@ namespace Week10DesignPatternII.Models
 {
     public class Character : ICharacter
     {
+        public Guid Id{ get; set; }
+
         [NameLength(Max = 10)]
         public string Name { get; set; }
 
@@ -31,6 +33,7 @@ namespace Week10DesignPatternII.Models
 
         public Character()
         {
+            Id = Guid.NewGuid();
             Inventory = new List<IItem>();
             HP = 100;
             Weight = 100;

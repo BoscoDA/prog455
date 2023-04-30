@@ -5,6 +5,7 @@ namespace Week10DesignPatternII.Models
 {
     public interface ICharacter
     {
+        Guid Id { get; set; }
         string Name { get; set; }
 
         List<IItem> Inventory { get; set; }

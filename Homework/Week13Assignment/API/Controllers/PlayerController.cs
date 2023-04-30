@@ -28,7 +28,7 @@ namespace API.Controllers
 
         [HttpDelete]
         [Route("delete-by-id/{id}")]
-        public string Delete(int id)
+        public string Delete(string id)
         {
             return _dataService.APIDeleteById(id);
         }
@@ -36,6 +36,13 @@ namespace API.Controllers
         [HttpPost]
         [Route("insert-record")]
         public string Post([FromBody] RecordModel model) 
+        {
+            return _dataService.APIInsertRecord(model);
+        }
+
+        [HttpPost]
+        [Route("update-record")]
+        public string Update([FromBody] RecordModel model)
         {
             return _dataService.APIInsertRecord(model);
         }

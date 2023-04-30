@@ -36,7 +36,7 @@ namespace Service
                     {
                         //use dapper here or AutoMapper
                         RecordModel model = new RecordModel();
-                        model.Id = (int)result["id"];
+                        model.Id = (string)result["player_id"];
                         model.Name = (string)result["name"];
                         model.UniformColor = (int)result["uniform_color"];
                         model.GemStone = (string)result["gem_stone"];
@@ -71,7 +71,7 @@ namespace Service
                     while (result.Read())
                     {
                         RecordModel model = new RecordModel();
-                        model.Id = (int)result["id"];
+                        model.Id = (string)result["player_id"];
                         model.Name = (string)result["name"];
                         model.UniformColor = (int)result["uniform_color"];
                         model.GemStone = (string)result["gem_stone"];
@@ -89,7 +89,7 @@ namespace Service
             return list;
         }
 
-        public string APIDeleteById(int id) 
+        public string APIDeleteById(string id) 
         { 
             using(SqlConnection connection = new SqlConnection(_sqlConnString)) 
             {
@@ -122,13 +122,35 @@ namespace Service
                     sqlCommand.Parameters.AddWithValue("@HP", record.HP).Direction = ParameterDirection.Input;
                     sqlCommand.Parameters.AddWithValue("@Weight", record.Weight).Direction = ParameterDirection.Input;
                     sqlCommand.Parameters.AddWithValue("@DepthDived", record.DepthDived).Direction = ParameterDirection.Input;
-                    sqlCommand.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                     conn.Open();
-                    sqlCommand.ExecuteNonQuery();
-                    var result = (int)sqlCommand.Parameters["@ReturnValue"].Value == 0 ? "Failed" : "Success";
+                    
+                    var result = sqlCommand.ExecuteNonQuery() == 0 ? "Failed" : "Success";
                     conn.Close();
                     return result;
+                }
+            }
+        }
+
+        public string APIUpdateRecord(RecordModel record)
+        {
+            using (SqlConnection conn = new SqlConnection(_sqlConnString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("[dbo].[UpdateRecordByID]", conn))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@Id", record.Id).Direction = ParameterDirection.Input;
+                    sqlCommand.Parameters.AddWithValue("@Name", record.Name).Direction = ParameterDirection.Input;
+                    sqlCommand.Parameters.AddWithValue("@UniformColor", (int)record.UniformColor).Direction = ParameterDirection.Input;
+                    sqlCommand.Parameters.AddWithValue("@GemStone", record.GemStone).Direction = ParameterDirection.Input;
+                    sqlCommand.Parameters.AddWithValue("@HP", record.HP).Direction = ParameterDirection.Input;
+                    sqlCommand.Parameters.AddWithValue("@Weight", record.Weight).Direction = ParameterDirection.Input;
+                    sqlCommand.Parameters.AddWithValue("@DepthDived", record.DepthDived).Direction = ParameterDirection.Input;
+
+                    conn.Open();
+                    var result = sqlCommand.ExecuteNonQuery() == 0 ? "Failed" : "Success";
+                    conn.Close();
+                    return result; ;
                 }
             }
         }
