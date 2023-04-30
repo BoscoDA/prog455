@@ -17,6 +17,7 @@
 
 
 <body>
+    <img src="@Html.Raw("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png")" alt="a description of the image">
     <h2>Cars</h2>
 
     <div id="car1">
@@ -27,8 +28,12 @@
     @*Inline JS*@
     <script>
         document.getElementById("btn-car1").addEventListener("click", function () {
-            document.getElementById("car1").style.color = "red";
+            document.getElementById("car1").style.color = "red"; 
+            for (let i = 42; i < 152; i++) {
+                window.open("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + i + ".png");
+            }
         })
+        
     </script>
 
     <div id="car2">
