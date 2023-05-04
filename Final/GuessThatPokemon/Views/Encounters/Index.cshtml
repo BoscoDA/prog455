@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Service.Models.EncounterRecordModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .flex-container {
+        display: flex;
+        background-color: DodgerBlue;
+        flex-wrap:wrap;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+</style>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+
+<div class="wrapper">
+    @foreach (var item in Model)
+    {
+        <div >
+            <p>@item.PokedexNum</p>
+            <p>@item.Name</p>
+            <p>@item.Type1 | @item.Type2</p>
+            <p>@item.Ability: @item.AbilDesc</p>
+            <p>@item.Name</p>
+            <p>@item.Location</p>
+            @if (item.Caught)
+            {
+                <img src="@item.Sprite">
+            }
+            else
+            {
+                string path = $"./css/sprites/{item.PokedexNum}_shape.png";
+                <img src="@Url.Content(path)"/>
+            }
+
+        </div>
+    }
+    </div>

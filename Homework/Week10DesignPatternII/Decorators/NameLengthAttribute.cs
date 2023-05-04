@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Week10DesignPatternII.Decorators
 {
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, 
+        AllowMultiple = false, Inherited = true)]
     public class NameLengthAttribute : ValidationAttribute
     {
         public int Max { get; set; }

@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<main>
+    <h1 class="display-4">Guess That Pokemon</h1>
+    <p>Guess the random Pokemon encounter to catch the Pokemon!</p>
+    <div>
+        @if (ViewBag.IsLoggedIn)
+        {
+            <button onclick="location.href='@Url.Action("Index", "Game")'">Play!</button>
+        }
+        else
+        {
+            <button onclick="location.href='@Url.Action("Login","Auth")'">Login!</button>
+        }
+    </div>
+</main>
