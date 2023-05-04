@@ -7,3 +7,6 @@
 
 # Ignore hidden folder for asp.net apps
 *.vs
+
+bin/
+Debug/
