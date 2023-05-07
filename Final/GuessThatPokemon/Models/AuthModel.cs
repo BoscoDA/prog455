@@ -1,4 +1,4 @@
-﻿using Service.Decorators;
+﻿using GuessThatPokemon.Decorators;
 using System.Text.Json.Serialization;
 
 namespace GuessThatPokemon.Models

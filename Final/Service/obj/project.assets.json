@@ -328,6 +328,19 @@
             "related": ".xml"
           }
         }
+      },
+      "Logger/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/Logger.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Logger.dll": {}
+        }
       }
     }
   },
@@ -1141,10 +1154,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Logger/1.0.0": {
+      "type": "project",
+      "path": "../Logger/Logger.csproj",
+      "msbuildProject": "../Logger/Logger.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Logger >= 1.0.0",
       "Newtonsoft.Json >= 13.0.3",
       "System.Data.SqlClient >= 4.8.5",
       "System.IdentityModel.Tokens.Jwt >= 6.30.0"
@@ -1182,7 +1201,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\workspace\\src\\prog455\\Final\\Logger\\Logger.csproj": {
+              "projectPath": "C:\\workspace\\src\\prog455\\Final\\Logger\\Logger.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

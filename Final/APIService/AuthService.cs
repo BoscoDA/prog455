@@ -15,15 +15,15 @@ namespace APIService
         public bool UsernameExist(string username)
         {
             var users = _dal.GetByUsername(username);
-            return users.Count > 0;
+            return users.Count >= 0;
         }
 
-        public Guid AddUser(UserModel model)
+        public Guid AddUser(UserRecordModel model)
         {
             return _dal.InsertUser(model);
         }
 
-        public string ValidUsername(string username, string password)
+        public string ValidLogin(string username, string password)
         {
             var users = _dal.GetByUsername(username);
             if(users.Count <= 0)
@@ -32,7 +32,7 @@ namespace APIService
                 return string.Empty;
             }
 
-            if (users[0].Password == password)
+            if (APIService.Utilities.HashUtil.CheckPassword(password,users[0].Salt, users[0].Password))
             {
                 return users[0].Id.ToString();
             }

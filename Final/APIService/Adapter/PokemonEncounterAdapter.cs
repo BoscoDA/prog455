@@ -10,7 +10,7 @@ namespace APIService.Adapter
     public static class PokemonEncounterAdapter
     {
 
-        public static EncounterRecordModel PokemonToEncounter(PokemonModel model) 
+        public static EncounterRecordModel PokemonToEncounter(PokemonRecordModel model) 
         {
             return new EncounterRecordModel()
             {

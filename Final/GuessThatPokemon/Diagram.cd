@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GuessThatPokemon.Controllers.AuthController">
+    <Position X="0.5" Y="4" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAIAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Controllers\AuthController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Controllers.BaseController">
+    <Position X="7.5" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAgAAAAAAAAAACACAAAAAAA=</HashCode>
+      <FileName>Controllers\BaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Controllers.EncounterHistoryController">
+    <Position X="12.5" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\EncounterHistoryController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Controllers.GameController">
+    <Position X="4.5" Y="4" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAIAAAA=</HashCode>
+      <FileName>Controllers\GameController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Controllers.HomeController">
+    <Position X="8.75" Y="4" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAIAAAAQAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Decorators.PasswordAttribute">
+    <Position X="3.5" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Decorators\PasswordAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Decorators.StringSizeAttribute">
+    <Position X="0.75" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Decorators\StringSizeAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.Requests.AuthRequestModel">
+    <Position X="18.75" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Requests\AuthRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.Requests.EncounterHistoryRequestModel">
+    <Position X="21.75" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Requests\EncounterHistoryRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.Requests.GameRequestModel">
+    <Position X="24.75" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACAAAAAAEAAAAgAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\Requests\GameRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.Responses.AuthResponseModel">
+    <Position X="18.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Responses\AuthResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.Responses.EncounterHistoryResponseModel">
+    <Position X="20.75" Y="2.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Responses\EncounterHistoryResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.Responses.GameResponseModel">
+    <Position X="24.75" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Responses\GameResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.Responses.ResponseBase">
+    <Position X="20.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Responses\ResponseBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GuessThatPokemon.Models.AuthModel">
+    <Position X="3" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AuthModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.EncounterHistoryModel">
+    <Position X="5.5" Y="10.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAECAAAgAAgAAAAIgAAQAAAAAAAAQAAAAACgAAAA=</HashCode>
+      <FileName>Models\EncounterHistoryModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.EncounterModel">
+    <Position X="8.25" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAgAggAAAAIgAAQAAAAAAAAQAAAAACgAAAA=</HashCode>
+      <FileName>Models\EncounterModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.ErrorViewModel">
+    <Position X="0.5" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.GameFormModel">
+    <Position X="17.25" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GameFormModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.GameModel">
+    <Position X="10.75" Y="10.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAIAASAAAAAAAAAkAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GameModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.Models.PokemonModel">
+    <Position X="14.25" Y="10.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAIAAAgEAAAAgAAQAAQAAAEAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\PokemonModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GuessThatPokemon.APICaller">
+    <Position X="20.5" Y="9" Width="6.75" />
+    <TypeIdentifier>
+      <HashCode>ABIEAQAAAAAAAAAAAAAAAAAABABECAAAQAAQBAAAAAA=</HashCode>
+      <FileName>APICaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GuessThatPokemon.Models.Responses.IResponse">
+    <Position X="23.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Responses\IResponse.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

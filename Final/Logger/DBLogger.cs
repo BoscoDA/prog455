@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logger.Chain_of_Responsibility;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,72 +11,30 @@ using System.Threading.Tasks;
  */
 namespace Logger
 {
-    internal class DBLogger : ILogger
+    public class DBLogger
     {
-        private string _sqlConnString;
-        public void DbLogger()
-        {
-            //typically would be own singleton class so you don't have to build it all the time
-            PrepareConnection();
+        private static DBLogger _instance;
+        private static InfoLogger info = new InfoLogger();
+        private static ErrorLogger error = new ErrorLogger();
+        private static WarningLogger warning = new WarningLogger();
 
-        }
-        public void LogError(string message, Exception ex)
+        public static DBLogger Instance() 
         {
-            string query = $"Insert into dbo.Log (LogLevel,LogMessage,Exception)" +
-                $"VALUES( '{LoggerLevel.ErrorLevel.Error}','{message}','{ex}')";
-
-            using (SqlConnection conn = new SqlConnection(_sqlConnString))
+            if(_instance == null)
             {
-                SqlCommand sqlCommand = new SqlCommand(query, conn);
-                conn.Open();
-
-                sqlCommand.ExecuteNonQuery();
-
-                conn.Close();
+                _instance = new DBLogger();
+                info = new InfoLogger();
+                error = new ErrorLogger();
+                warning = new WarningLogger();
+                info.SetNextLogger(warning);
+                warning.SetNextLogger(error);
             }
+            return _instance;
         }
 
-        public void LogInfo(string message)
+        public void Log(string level, string message, Exception? ex = null)
         {
-            string query = $"Insert into dbo.Log (LogLevel,LogMessage)" +
-                $"VALUES( '{LoggerLevel.ErrorLevel.Information}','{message}')";
-
-            using (SqlConnection conn = new SqlConnection(_sqlConnString))
-            {
-                SqlCommand sqlCommand = new SqlCommand(query, conn);
-                conn.Open();
-
-                sqlCommand.ExecuteNonQuery();
-
-                conn.Close();
-            }
-        }
-
-        public void LogWarning(string message)
-        {
-            string query = $"Insert into dbo.Log (LogLevel,LogMessage)" +
-                $"VALUES( '{LoggerLevel.ErrorLevel.Warning}','{message}')";
-
-            using (SqlConnection conn = new SqlConnection(_sqlConnString))
-            {
-                SqlCommand sqlCommand = new SqlCommand(query, conn);
-                conn.Open();
-
-                sqlCommand.ExecuteNonQuery();
-
-                conn.Close();
-            }
-        }
-
-        private void PrepareConnection()
-        {
-            //string immutable, will build over and over again when appended
-            //string builder holds values and then when you are done you get the string
-            SqlConnectionStringBuilder connBldr = new SqlConnectionStringBuilder();
-            connBldr.DataSource = $"(localdb)\\MSSQLLocalDB";
-            connBldr.IntegratedSecurity = true;
-            connBldr.InitialCatalog = $"GuessThatPokemon";
-            _sqlConnString = connBldr.ConnectionString;
+            info.Log(level, message, ex);
         }
     }
 }

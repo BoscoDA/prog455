@@ -13,4 +13,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.30.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Logger\Logger.csproj" />
+  </ItemGroup>
+
 </Project>

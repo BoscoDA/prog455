@@ -1,7 +1,7 @@
 ﻿using APIService.Adapter;
+using APIService.DALs;
 using APIService.Data_Access_Layers;
 using APIService.Models;
-using APIService.Models.ResponseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +14,18 @@ namespace APIService
 {
     public class GameService
     {
-        DAL _dal = new DAL();
+        GameDAL _gameDal = new GameDAL();
+        PokemonDAL _pokeDAL = new PokemonDAL();
+        EncountersDAL _encounterDAL = new EncountersDAL();
         Random _rand = new Random();
 
-        public GameResponseModel NewGame(Guid playerID)
+        public GameRecordModel NewGame(Guid playerID)
         {
-            //Create Pokemon
-            PokemonModel pokemon = _dal.GetById(_rand.Next(1, 150));
-            var location = _dal.GetLocationsMetByPokemonId(pokemon.PokedexNumber);
+            //Get a random pokemon from the DB
+            PokemonRecordModel pokemon = _pokeDAL.GetById(_rand.Next(1, 150));
+
+            //Get all spawn location associated with pokemon from the DB and give a random one to the pokemon
+            var location = _pokeDAL.GetLocationsMetByPokemonId(pokemon.PokedexNumber);
             if (location.Count <= 0)
             {
                 pokemon.LocationMet = "Evolution";
@@ -30,30 +34,29 @@ namespace APIService
             {
                 pokemon.LocationMet = location[_rand.Next(0, location.Count)];
             }
-            // Insert into encount table and return id for game
-            Guid pokeID = _dal.InsertEncounter(PokemonEncounterAdapter.PokemonToEncounter(pokemon));
+
+            // Insert into encounter table and return its id for the game
+            Guid pokeID = _encounterDAL.InsertEncounter(PokemonEncounterAdapter.PokemonToEncounter(pokemon));
 
             // make the game and save in Games table
             var game = new GameRecordModel()
             {
                 UserId = playerID,
                 Timestamp = DateTime.Now,
-                Completed = false,
                 Encounter = pokeID,
+                Completed = false
             };
 
-            Guid gameId = _dal.InsertGameRecord(game);
-            
+            Guid gameId = _gameDal.InsertGameRecord(game);
 
-            return new GameResponseModel(){
-                GameId = gameId,
-                Pokemon = pokemon
-            };
+            game.Id = gameId;
+
+            return game;
         }
 
         public GameRecordModel GetGameById(Guid id)
         {
-            var game = _dal.GetGameById(id);
+            var game = _gameDal.GetGameById(id);
             if(game == null)
             {
                 return null;
@@ -63,18 +66,18 @@ namespace APIService
 
         public void UpdateRecord(GameRecordModel record)
         {
-            _dal.UpdateGameById(record);
+                _gameDal.UpdateGameById(record);
         }
 
-        public EncounterRecordModel GetEncounterById(Guid id)
+        public EncounterRecordModel GetEncounterById(Guid? id)
         {
-            return _dal.GetEncounterById(id);
+            return _encounterDAL.GetEncounterById(id);
         }
         
         //On game end update the encounter to show if you won or not
         public void UpdateEncounter(EncounterRecordModel record) 
         {
-            _dal.UpdateEncounterById(record);
+            _encounterDAL.UpdateEncounterById(record);
         }
     }
 }

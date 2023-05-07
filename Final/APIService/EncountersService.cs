@@ -13,9 +13,9 @@ namespace APIService
 
         EncountersDAL _dal = new EncountersDAL();
 
-        public List<EncounterRecordModel> GetAllEncounters(Guid id)
+        public List<EncounterHistoryRecordModel> GetAllEncounters(Guid id)
         {
-            return _dal.GetById(id);
+            return _dal.GetByUserId(id);
         }
     }
 }

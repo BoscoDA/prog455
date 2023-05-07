@@ -6,8 +6,6 @@ namespace GuessThatPokemon.Controllers
 {
     public class AuthController : BaseController
     {
-        AuthService service = new AuthService();
-
         public IActionResult Login()
         {
             if(IsLoggedIn)
@@ -29,8 +27,9 @@ namespace GuessThatPokemon.Controllers
                 return View(model);
             }
 
-            var response = await service.Login(model.Username, model.Password);
+            var response = await api.Login(model.Username, model.Password);
             model.Password = string.Empty;
+
             if (!response.Success)
             {
                 ModelState.AddModelError("", response.Message);
@@ -38,6 +37,7 @@ namespace GuessThatPokemon.Controllers
             }
 
             UserID = response.Id;
+
             // Show login page
             return RedirectToAction("Index","Home");
         }
@@ -64,7 +64,7 @@ namespace GuessThatPokemon.Controllers
             }
 
             //Try to resgister
-            var response = await service.SignUp(model.Username, model.Password);
+            var response = await api.Signup(model.Username, model.Password);
             model.Password = string.Empty;
             if (!response.Success)
             {

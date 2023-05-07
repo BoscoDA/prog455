@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="APIService.GameService">
+    <Position X="0.5" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAIAAAAAAAAAAQAAAAABAAHAAABAgAAAAAAAAAAAA=</HashCode>
+      <FileName>GameService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.EncountersService">
+    <Position X="4.75" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EncountersService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.AuthService">
+    <Position X="9.75" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAIAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>AuthService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Utilities.HashUtil">
+    <Position X="14" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAACAgAAAAAAAAAAAAQAAIAAAAA=</HashCode>
+      <FileName>Utilities\HashUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Models.EncounterHistoryModel">
+    <Position X="19.75" Y="0.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAECAAAgAAgAAAAIgAAQAAAAAAAAQAAAAACgAAAA=</HashCode>
+      <FileName>Models\EncounterHistoryModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Models.EncounterHistoryRecordModel">
+    <Position X="24.25" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAECAAAgAAgAAAAIgAAQAAAAAAAAQAAAAACgAAAA=</HashCode>
+      <FileName>Models\EncounterHistoryRecordModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Models.EncounterRecordModel">
+    <Position X="29.75" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAgAggAAAAIgAAQAAAAAAAAQAAAAACgAAAA=</HashCode>
+      <FileName>Models\EncounterRecordModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Models.GameRecordModel">
+    <Position X="25.5" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAIAAAACAAgAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GameRecordModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Models.PokemonRecordModel">
+    <Position X="28.5" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAIAAAgEAAAAgAAQAAQAAAEAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\PokemonRecordModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Models.UserModel">
+    <Position X="19.75" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAAQAAAAAAAACAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Models.UserRecordModel">
+    <Position X="22.5" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAAQAAAAAAAACAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserRecordModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Models.EncounterModel">
+    <Position X="27" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAgAggAAAAIgAAQAAAAAAAAQAAAAACgAAAA=</HashCode>
+      <FileName>Models\EncounterModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.DALs.DatabaseConnectionSingleton">
+    <Position X="0.5" Y="4.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAEAAAQQAAAAAAAAA=</HashCode>
+      <FileName>DALs\DatabaseConnectionSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.DALs.EncountersDAL">
+    <Position X="0.5" Y="8.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AEAAIAAAAAAAQAACAAgAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DALs\EncountersDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.DALs.PokemonDAL">
+    <Position X="4.25" Y="4.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAIAAAgAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>DALs\PokemonDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.DALs.UsersDAL">
+    <Position X="8.25" Y="4.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAQAAAAAgAAAECAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DALs\UsersDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Data_Access_Layers.GameDAL">
+    <Position X="5.25" Y="8" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAQAAAAAgAAQAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DALs\GameDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="APIService.Adapter.PokemonEncounterAdapter">
+    <Position X="13.75" Y="8" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Adapter\PokemonEncounterAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

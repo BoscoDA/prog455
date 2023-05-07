@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Reflection;
 
 namespace APIService.DALs
 {
@@ -20,9 +21,9 @@ namespace APIService.DALs
             sqlConnectString = connectionSingleton.PrepareDBConnection();
         }
 
-        public List<UserModel> GetByUsername(string username)
+        public List<UserRecordModel> GetByUsername(string username)
         {
-            List<UserModel> models = new List<UserModel>();
+            List<UserRecordModel> models = new List<UserRecordModel>();
 
             using(SqlConnection conn = new SqlConnection(sqlConnectString))
             {
@@ -36,12 +37,7 @@ namespace APIService.DALs
 
                     while (result.Read()) 
                     {
-                        UserModel model = new UserModel();
-                        model.Id = (Guid)result["id"];
-                        model.Username = (string)result["username"];
-                        model.Password = (string)result["password"];
-                        model.SignupTime = (DateTime)result["signup_time"];
-                        models.Add(model);
+                        models.Add(MapToModel(result));
                     }
                     conn.Close();
                 }
@@ -49,7 +45,7 @@ namespace APIService.DALs
             return models;
         }
 
-        public Guid InsertUser(UserModel model)
+        public Guid InsertUser(UserRecordModel model)
         {
 
             using (SqlConnection conn = new SqlConnection(sqlConnectString))
@@ -59,6 +55,7 @@ namespace APIService.DALs
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Username", model.Username).Direction = ParameterDirection.Input;
                     cmd.Parameters.AddWithValue("@Password", model.Password).Direction = ParameterDirection.Input;
+                    cmd.Parameters.AddWithValue("@Salt", model.Salt).Direction = ParameterDirection.Input;
                     cmd.Parameters.AddWithValue("@SignupTime", model.SignupTime).Direction = ParameterDirection.Input;
                     cmd.Parameters.Add("@ReturnValue", SqlDbType.UniqueIdentifier).Direction = ParameterDirection.Output;
                     conn.Open();
@@ -68,6 +65,18 @@ namespace APIService.DALs
                     return result;
                 }
             }
+        }
+
+        private UserRecordModel MapToModel(SqlDataReader result)
+        {
+            UserRecordModel model = new UserRecordModel();
+            model.Id = (Guid)result["id"];
+            model.Username = (string)result["username"];
+            model.Password = (string)result["password"];
+            model.Salt = (string)result["salt"];
+            model.SignupTime = (DateTime)result["signup_time"];
+
+            return model;
         }
     }
 }

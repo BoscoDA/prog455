@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="API.Controllers.AuthController">
+    <Position X="3.5" Y="10.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAACAAAAEAQAAAAAAA=</HashCode>
+      <FileName>Controllers\AuthController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.EncountersController">
+    <Position X="8.25" Y="10.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAIAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\EncountersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.GameController">
+    <Position X="3.5" Y="13.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAEAQAAAAAAAAJAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\GameController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.PokemonController">
+    <Position X="8.25" Y="13.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAIE=</HashCode>
+      <FileName>Controllers\PokemonController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Models.RequestModels.AuthRequestModel">
+    <Position X="21.5" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RequestModels\AuthRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Models.RequestModels.EncounterRequestModel">
+    <Position X="19.25" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RequestModels\EncounterRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Models.RequestModels.GameRequestModel">
+    <Position X="16.25" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACAAAAAAEAAAAgAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\RequestModels\GameRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Models.ResponseModels.AuthResponseModel">
+    <Position X="3.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ResponseModels\AuthResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Models.ResponseModels.EncounterHistoryResponseModel">
+    <Position X="5.5" Y="6" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ResponseModels\EncounterHistoryResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Models.ResponseModels.GameResponseModel">
+    <Position X="9.75" Y="6" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ResponseModels\GameResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Models.ResponseModels.ResponseBase">
+    <Position X="5.75" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\ResponseModels\ResponseBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="API.Models.ResponseModels.IResponse">
+    <Position X="8.75" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\ResponseModels\IResponse.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,7 +1,7 @@
 ﻿@model GuessThatPokemon.Models.AuthModel;
 
 <main>
-    <p>Log In</p>
+    <p>Sign Up</p>
     <div >
         @using (Html.BeginForm())
         { // Owen Added form validation stuff
@@ -18,7 +18,7 @@
             <br>
             <input type="password" placeholder="Enter Password" name="password" required>
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" });
-            <button type="submit">Login</button>
+            <button type="submit">Sign Up</button>
         }
 
         <p>Have a account? <a href="@Url.Action("Login", "Auth")">Login here</a></p>

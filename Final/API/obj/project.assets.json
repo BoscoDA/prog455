@@ -278,6 +278,19 @@
         "runtime": {
           "bin/placeholder/APIService.dll": {}
         }
+      },
+      "Logger/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/Logger.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Logger.dll": {}
+        }
       }
     }
   },
@@ -970,11 +983,17 @@
       "type": "project",
       "path": "../APIService/APIService.csproj",
       "msbuildProject": "../APIService/APIService.csproj"
+    },
+    "Logger/1.0.0": {
+      "type": "project",
+      "path": "../Logger/Logger.csproj",
+      "msbuildProject": "../Logger/Logger.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "APIService >= 1.0.0",
+      "Logger >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.5",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.4.0"
@@ -1015,6 +1034,9 @@
           "projectReferences": {
             "C:\\workspace\\src\\prog455\\Final\\APIService\\APIService.csproj": {
               "projectPath": "C:\\workspace\\src\\prog455\\Final\\APIService\\APIService.csproj"
+            },
+            "C:\\workspace\\src\\prog455\\Final\\Logger\\Logger.csproj": {
+              "projectPath": "C:\\workspace\\src\\prog455\\Final\\Logger\\Logger.csproj"
             }
           }
         }

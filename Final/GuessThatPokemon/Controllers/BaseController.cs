@@ -1,21 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Service;
 
 namespace GuessThatPokemon.Controllers
 {
     public abstract class BaseController : Controller
     {
-        public String UserID
+        public APICaller api = new APICaller();
+
+        public string UserID
         {
             get
             {
                 if (HttpContext != null && HttpContext.Session.IsAvailable)
                 {
-                    if (!HttpContext.Session.TryGetValue("UserID", out byte[]? data))
-                    {
-                        HttpContext.Session.SetString("UserID", string.Empty);
-                    }
                     return HttpContext.Session.GetString("UserID") ?? string.Empty;
                 }
                 return string.Empty;
@@ -47,7 +46,7 @@ namespace GuessThatPokemon.Controllers
         {
             base.OnActionExecuting(context);
 
-            // Sets a bool in the view bag if we're logged in or not
+            // Sets a bool in the view bag if logged in or not
             ViewBag.IsLoggedIn = IsLoggedIn;
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Service.Models;
 
 namespace GuessThatPokemon.Models
 {
@@ -8,22 +7,21 @@ namespace GuessThatPokemon.Models
         [JsonProperty("id")]
         public Guid Id { get; private set; }
 
-        [JsonProperty("answer")]
-        public PokemonModel Answer { get; set; }
+        [JsonProperty("encounter")]
+        public EncounterModel? Encounter { get; set; }
 
         [JsonProperty("guesses")]
         public List<string> Guesses { get; set; }
 
         public GameModel()
         {
-            Answer = new PokemonModel();
             Guesses = new List<string>();
         }
 
-        public GameModel(Guid id, PokemonModel answer)
+        public GameModel(Guid id, EncounterModel answer)
         {
             Id = id;
-            Answer = answer;
+            Encounter = answer;
             Guesses = new List<string>();
         }
 

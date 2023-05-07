@@ -18,6 +18,9 @@ namespace APIService.Models
         [JsonPropertyName("password")]
         public string Password { get; set; }
 
+        [JsonPropertyName("salt")]
+        public string Salt { get; set; }
+
         [JsonPropertyName("signup_time")]
         public DateTime SignupTime { get; set; }
     }

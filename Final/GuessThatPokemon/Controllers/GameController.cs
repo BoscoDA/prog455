@@ -11,6 +11,7 @@ namespace GuessThatPokemon.Controllers
     {
         GameService gameService = new GameService();
 
+
         public GameModel? gameModel
         {
             get
@@ -52,7 +53,6 @@ namespace GuessThatPokemon.Controllers
             }
         }
 
-        [HttpGet]
         public async Task<IActionResult> Index()
         {
             //Check if the user logged in
@@ -65,16 +65,16 @@ namespace GuessThatPokemon.Controllers
             GameFormModel model = new GameFormModel();
 
             //Set up new game on database and gets its id
-            var NewGameResponse = await gameService.NewGame(UserID);
+            var NewGameResponse = await api.NewGame(UserID);
 
             if(!NewGameResponse.Success) 
             {
-                ModelState.AddModelError("", "An unknown error has occured...");
+                ModelState.AddModelError("", NewGameResponse.Message);
                 return View(model);
             }
 
             // Create new game
-            var gm = new GameModel(NewGameResponse.GameId.Value, NewGameResponse.Pokemon);
+            var gm = new GameModel(NewGameResponse.GameId.Value, NewGameResponse.Encounter);
 
 
             gameModel = gm;
@@ -95,26 +95,32 @@ namespace GuessThatPokemon.Controllers
                 return View(model);
             }
 
-            
-
             gm.AddGuess(model.Guess);
 
-            var response = await gameService.Guess(gm.Id, UserID, gm.Answer, model.Guess, gm.Guesses.Count);
-            if (!response.Success)
-            {
-                // Some unknown problem has occured
-                ModelState.AddModelError("", "An unknown error has occured...");
-                return View(model);
-            }
+            
+            bool end = gameService.HasWin(gm.Encounter.Name, model.Guess) || gameService.HasEnd(gm.Guesses.Count);
+            
 
-            bool end = gameService.HasWin(gm.Answer.Name, model.Guess) || gameService.HasEnd(gm.Guesses.Count);
             if (end)
             {
-                gm = null;
-                gameModel = gm;
-                ViewBag.Game = gm;
-                return RedirectToAction("Index", "Home");
+                bool won = gameService.HasWin(gm.Encounter.Name, model.Guess);
+                var response = await api.End(gm.Id, UserID, gm.Encounter, won);
+
+                if (!response.Success)
+                {
+                    // Some unknown problem has occured
+                    ModelState.AddModelError("", response.Message);
+                    return View(model);
+                }
+                if (end)
+                {
+                    gm = null;
+                    gameModel = gm;
+                    ViewBag.Game = gm;
+                    return RedirectToAction("Index", "EncounterHistory");
+                }
             }
+
             model.Guess = "";
 
             gameModel = gm;

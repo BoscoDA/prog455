@@ -1,7 +1,8 @@
-﻿using APIService;
+﻿using API.Models.RequestModels;
+using API.Models.ResponseModels;
+using APIService;
 using APIService.Models;
-using APIService.Models.RequestModels;
-using APIService.Models.ResponseModels;
+using Logger;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -10,6 +11,7 @@ namespace API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        DBLogger _logger = DBLogger.Instance();
         AuthService service;
 
         public AuthController()
@@ -25,9 +27,10 @@ namespace API.Controllers
             model.Username = auth.Username;
             model.SignupTime = DateTime.Now;
 
+            //Check if username exists, if it does return bad request
             string username = model.Username;
-
-            if (service.UsernameExist(username))
+            bool usernameExist = service.UsernameExist(username);
+            if (!usernameExist)
             {
                 return BadRequest(new AuthResponseModel()
                 {
@@ -36,9 +39,22 @@ namespace API.Controllers
                 });
             }
 
-            model.Password = auth.Password;
+            //Create salt and hash password with salt
+            model.Salt = APIService.Utilities.HashUtil.GenerateSalt();
+            model.Password = APIService.Utilities.HashUtil.HashPasswordWithSalt(auth.Password, model.Salt);
+            
+            UserRecordModel record = new UserRecordModel() 
+            {
+                Username = model.Username,
+                Password = model.Password,
+                Salt = model.Salt,
+                SignupTime = model.SignupTime
+            };
+            
+            //add new user to the db and return the unquieidentifier generated with it
+            model.Id = service.AddUser(record);
 
-            model.Id = service.AddUser(model);
+            _logger.Log("INFO",$"New user sign up successful. {model.Id} registered at {DateTime.Now}.");
 
             return Ok(new AuthResponseModel()
             {
@@ -52,10 +68,11 @@ namespace API.Controllers
         [Route("Login")]
         public IActionResult Login([FromBody] AuthRequestModel auth)
         {
-            string validLogin = service.ValidUsername(auth.Username, auth.Password);
+            string validLogin = service.ValidLogin(auth.Username, auth.Password);
 
             if(validLogin != string.Empty) 
             {
+                _logger.Log("INFO", $"Sucessful login by {auth.Username} at {DateTime.Now}");
                 return Ok(new AuthResponseModel()
                 {
                     Message = "Login Successful.",
@@ -65,6 +82,7 @@ namespace API.Controllers
             }
             else
             {
+                _logger.Log("WARNING",$"Failed login attempt to account {auth.Username} at {DateTime.Now}");
                 return Unauthorized(new AuthResponseModel()
                 {
                     Message = "Invalid Credentials.",

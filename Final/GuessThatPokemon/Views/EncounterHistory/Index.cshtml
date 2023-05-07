@@ -1,0 +1,52 @@
+﻿@model IEnumerable<GuessThatPokemon.Models.EncounterHistoryModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .flex-container {
+        display: flex;
+        background-color: DodgerBlue;
+        flex-wrap: wrap;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+</style>
+<h1>Past Enounters</h1>
+
+<div class="wrapper">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @foreach (var item in Model)
+    {
+        <div style="width:325px; height:300px; background-color:peachpuff;border: 5px solid black; padding:10px">
+            <p>
+                <b>Pokedex #:</b> @item.PokedexNum
+                <br />
+                <b>Name:</b> @item.Name
+                <br />
+                <b>Types:</b> @item.Type1 | @item.Type2
+                <br />
+                <b>Ability:</b> @item.Ability: @item.AbilDesc
+                <br />
+                <b>Enountered through:</b> @item.Location
+            </p>
+            <div>
+                @if (item.Caught)
+                {
+                    <img src="@item.Sprite" style="margin-left:auto; margin-right: auto; display:block">
+                }
+                else
+                {
+                    string path = $"./css/sprites/{item.PokedexNum}_shape.png";
+                    <img src="@Url.Content(path)" style="margin-left:auto; margin-right: auto; display:block" />
+                }
+            </div>
+
+        </div>
+    }
+</div>

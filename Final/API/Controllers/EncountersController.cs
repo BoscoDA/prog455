@@ -1,8 +1,10 @@
-﻿using APIService;
+﻿using API.Models.RequestModels;
+using API.Models.ResponseModels;
+using APIService;
 using APIService.Models;
-using APIService.Models.RequestModels;
-using APIService.Models.ResponseModels;
+using Logger;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace API.Controllers
 {
@@ -10,19 +12,42 @@ namespace API.Controllers
     [ApiController]
     public class EncountersController : ControllerBase
     {
+        DBLogger _logger = DBLogger.Instance();
         EncountersService _service = new EncountersService();
 
         [HttpGet]
-        [Route("get-all")]
+        [Route("get-all-by-user-id")]
         public IActionResult Index([FromBody]EncounterRequestModel model)
         {
-            List<EncounterRecordModel> encounters = _service.GetAllEncounters(model.UserID);
-            return Ok(new EncountersResponseModel()
+            try
             {
-                Message = "Encounters grabbed successfully.",
-                Success = true,
-                Encounters = encounters
-            });
+                List<EncounterHistoryRecordModel> records = _service.GetAllEncounters(model.UserID);
+
+                List<EncounterHistoryModel> encounters = new List<EncounterHistoryModel>();
+
+                foreach(var record in records)
+                {
+                    encounters.Add(new EncounterHistoryModel(record));
+                }
+
+                return Ok(new EncounterHistoryResponseModel()
+                {
+                    Message = "Encounters grabbed successfully.",
+                    Success = true,
+                    Encounters = encounters
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.Log("ERROR","Exception thrown by GetAllEncounters()", ex);
+                return BadRequest(new EncounterHistoryResponseModel()
+                {
+                    Message = "Exception was thrown.",
+                    Success = false,
+                    Encounters = null
+                });
+            }
+            
         }
     }
 }
