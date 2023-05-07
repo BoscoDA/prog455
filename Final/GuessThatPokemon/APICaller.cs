@@ -28,10 +28,6 @@ namespace GuessThatPokemon
             return _instance;
         }
 
-        public APICaller() 
-        {
-        }
-
         private T? Deserialize<T>(string? json)
         {
             try

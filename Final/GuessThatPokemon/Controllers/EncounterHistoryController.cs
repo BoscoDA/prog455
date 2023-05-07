@@ -8,18 +8,26 @@ namespace GuessThatPokemon.Controllers
 
         public async Task<IActionResult> Index()
         {
-            if (!IsLoggedIn)
+            try
             {
-                return RedirectToAction("Login", "Auth");
+                if (!IsLoggedIn)
+                {
+                    return RedirectToAction("Login", "Auth");
+                }
+                var response = await api.GetAllEncounters(new Guid(UserID));
+                if (!response.Success)
+                {
+                    ModelState.AddModelError("", response.Message);
+                    return View(new List<EncounterHistoryModel>());
+                }
+                var _encounters = response.Encounters.OrderByDescending(x => x.TimeStamp);
+                return View(_encounters);
             }
-            var response = await api.GetAllEncounters(new Guid(UserID));
-            if (!response.Success)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", response.Message);
-                return View(new List<EncounterHistoryModel>());
+                DBLogger.Log("ERROR", "An execption was thrown by EcounterHistory Index()", ex);
+                return View("Error",ex);
             }
-            var _encounters = response.Encounters.OrderByDescending(x => x.TimeStamp);
-            return View(_encounters);
         }
     }
 }

@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Service;
+using Logger;
 
 namespace GuessThatPokemon.Controllers
 {
     public abstract class BaseController : Controller
     {
-        public APICaller api = new APICaller();
+        public APICaller api = APICaller.Instance();
+        protected DBLogger DBLogger = DBLogger.Instance();
 
         public string UserID
         {

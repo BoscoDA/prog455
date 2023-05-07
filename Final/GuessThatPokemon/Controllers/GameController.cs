@@ -55,77 +55,95 @@ namespace GuessThatPokemon.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //Check if the user logged in
-            if(!IsLoggedIn)
+            try
             {
-                return RedirectToAction("Login", "Auth");
-            }
+                //Check if the user logged in
+                if (!IsLoggedIn)
+                {
+                    return RedirectToAction("Login", "Auth");
+                }
 
-            Random rand = new Random();
-            GameFormModel model = new GameFormModel();
+                Random rand = new Random();
+                GameFormModel model = new GameFormModel();
 
-            //Set up new game on database and gets its id
-            var NewGameResponse = await api.NewGame(UserID);
+                //Set up new game on database and gets its id
+                var NewGameResponse = await api.NewGame(UserID);
 
-            if(!NewGameResponse.Success) 
-            {
-                ModelState.AddModelError("", NewGameResponse.Message);
+                if (!NewGameResponse.Success)
+                {
+                    ModelState.AddModelError("", NewGameResponse.Message);
+                    return View(model);
+                }
+
+                // Create new game
+                var gm = new GameModel(NewGameResponse.GameId.Value, NewGameResponse.Encounter);
+
+
+                gameModel = gm;
+                ViewBag.Game = gm;
                 return View(model);
             }
-
-            // Create new game
-            var gm = new GameModel(NewGameResponse.GameId.Value, NewGameResponse.Encounter);
-
-
-            gameModel = gm;
-            ViewBag.Game = gm;
-            return View(model);
+            catch (Exception ex)
+            {
+                DBLogger.Log("ERROR", "An execption was thrown by Game Index()", ex);
+                return View("Error", ex);
+            }
+            
         }
 
         [HttpPost]
         public async Task<IActionResult> Index([FromForm]GameFormModel model)
         {
-            var gm = gameModel;
-
-            if (!ModelState.IsValid)
+            try
             {
-                model.Guess = string.Empty;
+                var gm = gameModel;
+
+                if (!ModelState.IsValid)
+                {
+                    model.Guess = string.Empty;
+                    gameModel = gm;
+                    ViewBag.Game = gm;
+                    return View(model);
+                }
+
+                gm.AddGuess(model.Guess);
+
+
+                bool end = gameService.HasWin(gm.Encounter.Name, model.Guess) || gameService.HasEnd(gm.Guesses.Count);
+
+
+                if (end)
+                {
+                    bool won = gameService.HasWin(gm.Encounter.Name, model.Guess);
+                    var response = await api.End(gm.Id, UserID, gm.Encounter, won);
+
+                    if (!response.Success)
+                    {
+                        // Some unknown problem has occured
+                        ModelState.AddModelError("", response.Message);
+                        return View(model);
+                    }
+                    if (end)
+                    {
+                        gm = null;
+                        gameModel = gm;
+                        ViewBag.Game = gm;
+                        return RedirectToAction("Index", "EncounterHistory");
+                    }
+                }
+
+                model.Guess = "";
+
                 gameModel = gm;
                 ViewBag.Game = gm;
                 return View(model);
             }
-
-            gm.AddGuess(model.Guess);
-
-            
-            bool end = gameService.HasWin(gm.Encounter.Name, model.Guess) || gameService.HasEnd(gm.Guesses.Count);
-            
-
-            if (end)
+            catch(Exception ex) 
             {
-                bool won = gameService.HasWin(gm.Encounter.Name, model.Guess);
-                var response = await api.End(gm.Id, UserID, gm.Encounter, won);
-
-                if (!response.Success)
-                {
-                    // Some unknown problem has occured
-                    ModelState.AddModelError("", response.Message);
-                    return View(model);
-                }
-                if (end)
-                {
-                    gm = null;
-                    gameModel = gm;
-                    ViewBag.Game = gm;
-                    return RedirectToAction("Index", "EncounterHistory");
-                }
+                DBLogger.Log("ERROR", "An execption was thrown by Game Index()", ex);
+                return View("Error", ex);
             }
-
-            model.Guess = "";
-
-            gameModel = gm;
-            ViewBag.Game = gm;
-            return View(model);
+            
         }
     }
 }
