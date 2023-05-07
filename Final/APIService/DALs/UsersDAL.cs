@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace APIService.DALs
 {
-    public class UsersDAL
+    public class UsersDAL : IUserDAL
     {
         private string sqlConnectString = string.Empty;
         private DatabaseConnectionSingleton connectionSingleton;

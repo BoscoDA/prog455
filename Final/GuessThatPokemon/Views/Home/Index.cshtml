@@ -1,11 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    body {
+        background-color: white;
+        background-attachment: fixed;
+        font-family: Tahoma, Verdana, sans-serif;
+    }
 
-<main>
+    .center {
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: min(100%, 70ch);
+    }
+</style>
+<main class="center">
     <h1 class="display-4">Guess That Pokemon</h1>
-    <p>Guess the random Pokemon encounter to catch the Pokemon!</p>
-    <div>
+    <p>Welcome to Guess that Pokemon!</p>
+    <p>Instructions</p>
+    <p>Each game you will encounter a one of the first 150 Pokemon. You will get a total of 4 tries to capture it by guessing its name correctly. 
+        With each try you will be prompted a hint, they start hard but get easier as you guess wrong. You will first be prompted of a place it is located, 
+        if it is only acquired through evolution it will say "Evolution". Second you will be given its types, then its abilty and finally you will be shown the outline of its sprite.</p>
+
+    <div class="center">
         @if (ViewBag.IsLoggedIn)
         {
             <button onclick="location.href='@Url.Action("Index", "Game")'">Play!</button>

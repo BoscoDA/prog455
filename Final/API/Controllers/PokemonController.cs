@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using APIService.Models;
-using APIService.Data_Access_Layers;
 using API.Models.RequestModels;
 using APIService.DALs;
 
@@ -13,7 +12,6 @@ namespace API.Controllers
     public class PokemonController : ControllerBase
     {
         private PokemonDAL _dal = new PokemonDAL();
-        private Random _random = new Random();
 
         [HttpGet]
         [Route("get-by-id{id}")]

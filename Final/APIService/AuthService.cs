@@ -10,12 +10,22 @@ namespace APIService
 {
     public class AuthService
     {
-        UsersDAL _dal = new UsersDAL();
+        IUserDAL _dal;
+
+        public AuthService()
+        {
+            _dal = new UsersDAL();
+        }
+
+        public AuthService(IUserDAL dal)
+        {
+            _dal = dal;
+        }
 
         public bool UsernameExist(string username)
         {
             var users = _dal.GetByUsername(username);
-            return users.Count >= 0;
+            return users.Count <= 0;
         }
 
         public Guid AddUser(UserRecordModel model)
@@ -32,7 +42,7 @@ namespace APIService
                 return string.Empty;
             }
 
-            if (APIService.Utilities.HashUtil.CheckPassword(password,users[0].Salt, users[0].Password))
+            if (Utilities.HashUtil.CheckPassword(password,users[0].Salt, users[0].Password))
             {
                 return users[0].Id.ToString();
             }

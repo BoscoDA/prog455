@@ -9,9 +9,9 @@ using APIService.DALs;
 using APIService.Models;
 using System.Reflection;
 
-namespace APIService.Data_Access_Layers
+namespace APIService.DALs
 {
-    public class GameDAL
+    public class GameDAL : IGameDAL
     {
         private string sqlConnectString = string.Empty;
         private DatabaseConnectionSingleton connectionSingleton;
@@ -31,7 +31,7 @@ namespace APIService.Data_Access_Layers
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@PlayerId", model.UserId).Direction = ParameterDirection.Input;
                     cmd.Parameters.AddWithValue("@EncounterId", model.Encounter).Direction = ParameterDirection.Input;
-                    cmd.Parameters.AddWithValue("@Timestemp", model.Timestamp).Direction = ParameterDirection.Input;
+                    cmd.Parameters.AddWithValue("@Timestemp", DateTime.Now).Direction = ParameterDirection.Input;
                     cmd.Parameters.AddWithValue("@Completed", model.Completed).Direction = ParameterDirection.Input;
                     cmd.Parameters.Add("@ReturnValue", SqlDbType.UniqueIdentifier).Direction = ParameterDirection.Output;
                     conn.Open();

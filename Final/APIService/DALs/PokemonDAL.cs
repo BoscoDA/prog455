@@ -9,7 +9,7 @@ using APIService.Models;
 
 namespace APIService.DALs
 {
-    public class PokemonDAL
+    public class PokemonDAL : IPokemonDAL
     {
         private string sqlConnectString = string.Empty;
         private DatabaseConnectionSingleton connectionSingleton;

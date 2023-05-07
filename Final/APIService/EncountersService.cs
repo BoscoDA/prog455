@@ -10,8 +10,17 @@ namespace APIService
 {
     public class EncountersService
     {
+        IEncountersDAL _dal;
 
-        EncountersDAL _dal = new EncountersDAL();
+        public EncountersService() 
+        {
+            _dal = new EncountersDAL();
+        }
+
+        public EncountersService(IEncountersDAL dal)
+        {
+            _dal = dal;
+        }
 
         public List<EncounterHistoryRecordModel> GetAllEncounters(Guid id)
         {

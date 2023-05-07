@@ -9,8 +9,8 @@ using APIService.Models;
 
 namespace APIService.DALs
 {
-    public class EncountersDAL
-    {
+    public class EncountersDAL : IEncountersDAL
+    { 
         private string sqlConnectString = string.Empty;
         private DatabaseConnectionSingleton connectionSingleton;
 
