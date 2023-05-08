@@ -19,6 +19,11 @@ namespace API.Controllers
             service = new AuthService();
         }
 
+        /// <summary>
+        /// api endpoint to handle logic for registering a new user to the database
+        /// </summary>
+        /// <param name="auth">Request modle that contains the username and password for the user</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Signup")]
         public IActionResult Signup([FromBody] AuthRequestModel auth)
@@ -64,6 +69,17 @@ namespace API.Controllers
             });
         }
 
+
+        /// <summary>
+        /// Handles HTTP POST requests to authenticate a user's login credentials
+        /// </summary>
+        /// <param name="auth">An AuthRequestModel object containing the user's login information</param>
+        /// <returns>
+        /// If authentication is successful, returns an HTTP 200 OK response with an AuthResponseModel object
+        /// containing the user's id, a message, and success status.
+        /// If authentication fails, returns an HTTP 401 Unauthorized response with an AuthResponseModel object
+        /// containing an error message, a false success status, and an empty authentication token.
+        /// </returns>
         [HttpPost]
         [Route("Login")]
         public IActionResult Login([FromBody] AuthRequestModel auth)

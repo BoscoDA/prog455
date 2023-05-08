@@ -18,6 +18,10 @@ namespace Logger
         private static ErrorLogger error = new ErrorLogger();
         private static WarningLogger warning = new WarningLogger();
 
+        /// <summary>
+        /// Gets singleton instance of the class
+        /// </summary>
+        /// <returns></returns>
         public static DBLogger Instance() 
         {
             if(_instance == null)
@@ -32,6 +36,12 @@ namespace Logger
             return _instance;
         }
 
+        /// <summary>
+        /// Initiates the chain of responsiblity for logging to the database
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="message"></param>
+        /// <param name="ex"></param>
         public void Log(string level, string message, Exception? ex = null)
         {
             info.Log(level, message, ex);

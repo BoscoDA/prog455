@@ -22,6 +22,11 @@ namespace APIService
             _dal = dal;
         }
 
+        /// <summary>
+        /// uses the id provided to make a call to the database using the EncountersDAL 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A list of EncounterHistoryRecordModels</returns>
         public List<EncounterHistoryRecordModel> GetAllEncounters(Guid id)
         {
             return _dal.GetByUserId(id);

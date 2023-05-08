@@ -14,6 +14,17 @@ namespace API.Controllers
         DBLogger _logger = DBLogger.Instance();
         GameService _service = new GameService();
 
+        /// <summary>
+        /// Handles HTTP POST requests to create a new game for the given player ID.
+        /// </summary>
+        /// <param name="model">A GameRequestModel object containing the player ID for the new game</param>
+        /// <returns>
+        /// If creation is successful, returns an HTTP 200 OK response with a GameResponseModel object containing
+        /// a success status, a message, a new game ID, and an EncounterModel object representing the newly created
+        /// Pokemon encounter.
+        /// If creation fails due to an exception, returns an HTTP 400 Bad Request response with a GameResponseModel
+        /// object containing a false success status, an error message, an empty game ID, and a null EncounterModel object.
+        /// </returns>
         [HttpPost]
         [Route("new-game")]
         public IActionResult NewGame([FromBody] GameRequestModel model)
@@ -69,6 +80,17 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Handles HTTP POST requests to end the specified game and update its completion status and associated Pokemon encounter.
+        /// </summary>
+        /// <param name="model">A GameRequestModel object containing the game ID, a boolean flag indicating whether the game is ending, and a boolean flag indicating whether the player correctly guessed the Pokemon.</param>
+        /// <returns>
+        /// If the game is successfully updated, returns an HTTP 200 OK response with a GameResponseModel object containing
+        /// a success status and a message.
+        /// If the game cannot be updated due to an exception or if the specified game ID is not found in the database,
+        /// returns an HTTP 404 Not Found response with a GameResponseModel object containing a false success status,
+        /// an error message, an empty game ID, and a null EncounterModel object.
+        /// </returns>
         [HttpPost]
         [Route("end")]
         public IActionResult End([FromBody]GameRequestModel model)

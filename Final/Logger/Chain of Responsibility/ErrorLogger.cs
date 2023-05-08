@@ -18,6 +18,12 @@ namespace Logger.Chain_of_Responsibility
             _sqlConnString = connectionSingleton.PrepareDBConnection();
         }
 
+        /// <summary>
+        /// Logs requests that are of the Error level
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="message"></param>
+        /// <param name="ex"></param>
         public override void Log(string level, string message, Exception ex)
         {
             string query = $"Insert into dbo.Log (LogLevel,LogMessage,Exception)" +

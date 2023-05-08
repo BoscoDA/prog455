@@ -11,10 +11,12 @@ namespace Logger
     {
         private static DatabaseConnectionSingleton _instance;
 
-        //use this to reference the DB connection
         private static SqlConnectionStringBuilder _connectionBuilder;
 
-        //make sure there is only one instance of the reference to the database
+        /// <summary>
+        /// Gets the singleton instance of the class
+        /// </summary>
+        /// <returns></returns>
         public static DatabaseConnectionSingleton Instance()
         {
             if (_instance == null)
@@ -27,7 +29,10 @@ namespace Logger
 
         private DatabaseConnectionSingleton() { }
 
-        //Create the reference that will be used to connect to the db
+        /// <summary>
+        /// Builds the SQL connection needed to connect to the database for the project 
+        /// </summary>
+        /// <returns></returns>
         public string PrepareDBConnection()
         {
             _connectionBuilder.DataSource = $"(localdb)\\MSSQLLocalDB";

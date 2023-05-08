@@ -19,15 +19,6 @@ namespace API.Controllers
         {
 
             var pokemon = _dal.GetById(id);
-            //var location = _dal.GetLocationsMetByPokemonId(model.PokemonID);
-            //if(location.Count <= 0)
-            //{
-            //    pokemon.LocationMet = "Evolution";
-            //}
-            //else
-            //{
-            //    pokemon.LocationMet = location[_random.Next(0, location.Count)];
-            //}
 
             return pokemon;
 

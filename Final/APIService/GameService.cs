@@ -34,6 +34,11 @@ namespace APIService
             _rand = rand;
         }
 
+        /// <summary>
+        /// Creates a random new pokemon using the PokemonDAL and then creates a new Game on in the database using the pokemon created and the user id that is passed in
+        /// </summary>
+        /// <param name="playerID"></param>
+        /// <returns>Returns the new GameRecordModel to be used in the game</returns>
         public GameRecordModel NewGame(Guid playerID)
         {
             //Get a random pokemon from the DB
@@ -70,6 +75,11 @@ namespace APIService
             return game;
         }
 
+        /// <summary>
+        /// Uses the provide game id to call tge GameDAL and retrieve the game that corrisponds to it in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>GameRecordModel</returns>
         public GameRecordModel GetGameById(Guid id)
         {
             var game = _gameDal.GetGameById(id);
@@ -80,6 +90,10 @@ namespace APIService
             return game;
         }
 
+        /// <summary>
+        /// Calls the GameDAL using the provided record to update it in the database
+        /// </summary>
+        /// <param name="record"></param>
         public void UpdateRecord(GameRecordModel record)
         {
                 _gameDal.UpdateGameById(record);
@@ -90,7 +104,10 @@ namespace APIService
             return _encounterDAL.GetEncounterById(id);
         }
         
-        //On game end update the encounter to show if you won or not
+        /// <summary>
+        /// Using the passed in record to call the GameDAL to update the specified enounter in the database
+        /// </summary>
+        /// <param name="record"></param>
         public void UpdateEncounter(EncounterRecordModel record) 
         {
             _encounterDAL.UpdateEncounterById(record);
