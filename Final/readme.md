@@ -21,3 +21,8 @@
 6. Once you run out of guesses or guess the Pokemon correctly you will be redirected to the Encounters Page.
 7. On the Encounters Page you will be able to scroll through all of your previous games and see which ones you caught or failed to catch. A caught Pokemon is denoted by the sprite being colored in, while a Pokemon that you have not caught will have a blacked out sprite. Encounters are sorted from your most recent encounter to your first encounter.
 8. Once you are done you can click the log out button in the top right corner.
+
+## Project Flow
+<p align="center">
+  <img src="./Documentation/GuessThatPokemon_Flow.jpeg"/>
+</p>
