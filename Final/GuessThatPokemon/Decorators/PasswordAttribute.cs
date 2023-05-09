@@ -36,7 +36,7 @@ namespace GuessThatPokemon.Decorators
              * Above cheat sheet and learning of the topic of Regex (regular expression) from this video:  https://www.youtube.com/watch?v=R5BcHIMZMxc
              */
 
-            bool regexResult = Regex.IsMatch((string)value, @"([A-Z])") && Regex.IsMatch((string)value, @"([a-z])") && Regex.IsMatch((string)value, @"([0-9])") && Regex.IsMatch((string)value, @"([!@#$%^&*-])");
+            bool regexResult = Regex.IsMatch((string)value!, @"([A-Z])") && Regex.IsMatch((string)value!, @"([a-z])") && Regex.IsMatch((string)value!, @"([0-9])") && Regex.IsMatch((string)value!, @"([!@#$%^&*-])");
             if (value == null || value is not string || !regexResult)
             {
                 ErrorMessage = "Password must contain a Upercase Letter, Number and Special Character (!@#$%^&*-).";

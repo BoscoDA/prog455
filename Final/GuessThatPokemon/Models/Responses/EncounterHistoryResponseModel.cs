@@ -10,6 +10,6 @@ namespace GuessThatPokemon.Models.Responses
     public class EncounterHistoryResponseModel : ResponseBase
     {
         [JsonPropertyName("encounters")]
-        public List<EncounterHistoryModel> Encounters { get; set; }
+        public List<EncounterHistoryModel>? Encounters { get; set; }
     }
 }

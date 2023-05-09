@@ -9,9 +9,9 @@ namespace Logger
 {
     public class DatabaseConnectionSingleton
     {
-        private static DatabaseConnectionSingleton _instance;
+        private static DatabaseConnectionSingleton? _instance;
 
-        private static SqlConnectionStringBuilder _connectionBuilder;
+        private static SqlConnectionStringBuilder? _connectionBuilder;
 
         /// <summary>
         /// Gets the singleton instance of the class
@@ -35,7 +35,7 @@ namespace Logger
         /// <returns></returns>
         public string PrepareDBConnection()
         {
-            _connectionBuilder.DataSource = $"(localdb)\\MSSQLLocalDB";
+            _connectionBuilder!.DataSource = $"(localdb)\\MSSQLLocalDB";
             _connectionBuilder.IntegratedSecurity = true;
             _connectionBuilder.InitialCatalog = $"GuessThatPokemon";
 

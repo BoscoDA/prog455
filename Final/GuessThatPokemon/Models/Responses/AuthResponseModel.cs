@@ -10,6 +10,6 @@ namespace GuessThatPokemon.Models.Responses
     public class AuthResponseModel : ResponseBase
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
     }
 }

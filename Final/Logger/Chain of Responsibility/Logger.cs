@@ -10,9 +10,9 @@ namespace Logger.Chain_of_Responsibility
     public abstract class Logger
     {
         protected string _sqlConnString = string.Empty;
-        protected DatabaseConnectionSingleton connectionSingleton;
+        protected DatabaseConnectionSingleton? connectionSingleton;
 
-        protected Logger nextLogger { get; set; }
+        protected Logger? nextLogger { get; set; }
         /// <summary>
         /// Processes requests specific type and passes anyother request to the next receiver.
         /// </summary>

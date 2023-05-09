@@ -15,12 +15,12 @@ namespace GuessThatPokemon.Controllers
                     return RedirectToAction("Login", "Auth");
                 }
                 var response = await api.GetAllEncounters(new Guid(UserID));
-                if (!response.Success)
+                if (!response!.Success)
                 {
                     ModelState.AddModelError("", response.Message);
                     return View(new List<EncounterHistoryModel>());
                 }
-                var _encounters = response.Encounters.OrderByDescending(x => x.TimeStamp);
+                var _encounters = response.Encounters!.OrderByDescending(x => x.TimeStamp);
                 return View(_encounters);
             }
             catch (Exception ex)

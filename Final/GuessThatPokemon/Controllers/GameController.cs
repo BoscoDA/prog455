@@ -53,6 +53,7 @@ namespace GuessThatPokemon.Controllers
             }
         }
 
+
         public async Task<IActionResult> Index()
         {
             try
@@ -69,14 +70,14 @@ namespace GuessThatPokemon.Controllers
                 //Set up new game on database and gets its id
                 var NewGameResponse = await api.NewGame(UserID);
 
-                if (!NewGameResponse.Success)
+                if (!NewGameResponse!.Success)
                 {
                     ModelState.AddModelError("", NewGameResponse.Message);
                     return View(model);
                 }
 
                 // Create new game
-                var gm = new GameModel(NewGameResponse.GameId.Value, NewGameResponse.Encounter);
+                var gm = new GameModel(NewGameResponse.GameId!.Value, NewGameResponse.Encounter!);
 
 
                 gameModel = gm;
@@ -106,18 +107,18 @@ namespace GuessThatPokemon.Controllers
                     return View(model);
                 }
 
-                gm.AddGuess(model.Guess);
+                gm!.AddGuess(model.Guess);
 
 
-                bool end = gameService.HasWin(gm.Encounter.Name, model.Guess) || gameService.HasEnd(gm.Guesses.Count);
+                bool end = gameService.HasWin(gm.Encounter!.Name!, model.Guess) || gameService.HasEnd(gm.Guesses.Count);
 
 
                 if (end)
                 {
-                    bool won = gameService.HasWin(gm.Encounter.Name, model.Guess);
+                    bool won = gameService.HasWin(gm.Encounter!.Name!, model.Guess);
                     var response = await api.End(gm.Id, UserID, gm.Encounter, won);
 
-                    if (!response.Success)
+                    if (!response!.Success)
                     {
                         // Some unknown problem has occured
                         ModelState.AddModelError("", response.Message);

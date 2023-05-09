@@ -9,10 +9,10 @@ namespace APIService.DALs
 {
     public class DatabaseConnectionSingleton
     {
-        private static DatabaseConnectionSingleton instance;
+        private static DatabaseConnectionSingleton? instance;
 
         //use this to reference the DB connection
-        private static SqlConnectionStringBuilder connectionBuilder;
+        private static SqlConnectionStringBuilder? connectionBuilder;
 
         //make sure there is only one instance of the reference to the database
         public static DatabaseConnectionSingleton Instance()
@@ -30,7 +30,7 @@ namespace APIService.DALs
         //Create the reference that will be used to connect to the db
         public string PrepareDBConnection()
         {
-            connectionBuilder.DataSource = $"(localdb)\\MSSQLLocalDB";
+            connectionBuilder!.DataSource = $"(localdb)\\MSSQLLocalDB";
             connectionBuilder.IntegratedSecurity = true;
             connectionBuilder.InitialCatalog = $"GuessThatPokemon";
 

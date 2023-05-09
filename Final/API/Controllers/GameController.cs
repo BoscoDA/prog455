@@ -31,7 +31,7 @@ namespace API.Controllers
         {
             try
             {
-                Guid? user = new Guid(model.PlayerID);
+                Guid? user = new Guid(model.PlayerID!);
 
                 var response = _service.NewGame(user.Value);
 
@@ -97,7 +97,7 @@ namespace API.Controllers
         {
             try
             {
-                if (model.End.Value)
+                if (model.End!.Value)
                 {
                     var game = _service.GetGameById(model.GameID);
                     if (game == null)
@@ -105,7 +105,7 @@ namespace API.Controllers
                         _logger.Log("WARNING",$"Failed to retrieve game {model.GameID} at {DateTime.Now}.");
                         return NotFound(new GameResponseModel()
                         {
-                            Message = $"Unable to locate game {game.Id}",
+                            Message = $"Unable to locate game {game!.Id}",
                             Success = false,
                             GameId = Guid.Empty,
                             Encounter = null

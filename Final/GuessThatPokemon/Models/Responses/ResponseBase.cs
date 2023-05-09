@@ -10,7 +10,7 @@ namespace GuessThatPokemon.Models.Responses
     public class ResponseBase : IResponse
     {
         [JsonPropertyName("message")]
-        public string Message { get; set; }
+        public string Message { get; set; } = string.Empty;
 
         [JsonPropertyName("success")]
         public bool Success { get; set; }

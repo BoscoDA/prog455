@@ -24,7 +24,7 @@ namespace Logger.Chain_of_Responsibility
         /// <param name="level"></param>
         /// <param name="message"></param>
         /// <param name="ex"></param>
-        public override void Log(string level, string message, Exception ex)
+        public override void Log(string level, string message, Exception? ex)
         {
             string query = $"Insert into dbo.Log (LogLevel,LogMessage,Exception)" +
                 $"VALUES( 'Error','{message}','{ex}')";

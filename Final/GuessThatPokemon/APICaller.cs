@@ -14,33 +14,38 @@ namespace GuessThatPokemon
 {
     public class APICaller
     {
-        private static APICaller _instance;
+        private static APICaller? _instance;
 
         private readonly HttpClient client = new HttpClient();
         private readonly string ApiUrl = "https://localhost:7267/api/";
 
         public static APICaller Instance()
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = new APICaller();
             }
             return _instance;
         }
 
+        /// <summary>
+        /// Generic method used for deserializing response from the API calls
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="json"></param>
+        /// <returns></returns>
         private T? Deserialize<T>(string? json)
         {
-            try
-            {
-                return (json != null ? JsonSerializer.Deserialize<T>(json) : default(T));
-            }
-            catch (Exception ex)
-            {
-                // Error has occured
-                return default(T);
-            }
+            return (json != null ? JsonSerializer.Deserialize<T>(json) : default(T));
         }
 
+        /// <summary>
+        /// Reusable method for making requests to the api using the url, verb and request provide
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="verb"></param>
+        /// <param name="requestBody"></param>
+        /// <returns></returns>
         private async Task<string?> MakeRequest(string url, HttpMethod verb, object requestBody)
         {
             string body = JsonSerializer.Serialize(requestBody);
@@ -51,30 +56,43 @@ namespace GuessThatPokemon
                 Content = new StringContent(body, Encoding.UTF8, "application/json"),
             };
 
-            try
-            {
-                var response = await client.SendAsync(request);
-                var result = await response.Content.ReadAsStringAsync();
-                return result ?? null;
-            }
-            catch
-            {
-                return null;
-            }
+            var response = await client.SendAsync(request);
+            //response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            return result ?? null;
         }
 
+        /// <summary>
+        /// Makes a API request to the NewGame endpoint of the API
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<GameResponseModel?> NewGame(string id)
         {
-            string url = ApiUrl + "game/new-game";
-            GameRequestModel request = new GameRequestModel()
+            try
             {
-                PlayerID = id
-                
-            };
-            string? result = await MakeRequest(url, HttpMethod.Post, request);
-            GameResponseModel? response = Deserialize<GameResponseModel?>(result);
+                string url = ApiUrl + "game/new-game";
+                GameRequestModel request = new GameRequestModel()
+                {
+                    PlayerID = id
 
-            if(response == null)
+                };
+
+                string? result = await MakeRequest(url, HttpMethod.Post, request);
+                GameResponseModel? response = Deserialize<GameResponseModel?>(result);
+
+                if (response == null)
+                {
+                    return new GameResponseModel()
+                    {
+                        Message = "Something went wrong...",
+                        Success = false
+                    };
+                }
+
+                return response;
+            }
+            catch (Exception ex)
             {
                 return new GameResponseModel()
                 {
@@ -82,10 +100,16 @@ namespace GuessThatPokemon
                     Success = false
                 };
             }
-
-            return response;
         }
 
+        /// <summary>
+        /// Makes a API call to the End endpoint of the API
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <param name="playerId"></param>
+        /// <param name="pokemon"></param>
+        /// <param name="hasWon"></param>
+        /// <returns></returns>
         public async Task<GameResponseModel?> End(Guid gameId, string playerId, EncounterModel pokemon, bool hasWon)
         {
             string url = ApiUrl + "game/end";
@@ -102,7 +126,13 @@ namespace GuessThatPokemon
             GameResponseModel? responseModel = Deserialize<GameResponseModel?>(result);
             return responseModel;
         }
-        
+
+        /// <summary>
+        /// Makes a API request to the Signup endpoint of the API
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<AuthResponseModel?> Signup(string username, string password)
         {
             string url = ApiUrl + "auth/signup";
@@ -117,6 +147,12 @@ namespace GuessThatPokemon
             return response ?? new AuthResponseModel() { Success = false, Id = "" };
         }
 
+        /// <summary>
+        /// Makes a API request to the Login endpoint of the API
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<AuthResponseModel?> Login(string username, string password)
         {
             string url = ApiUrl + "auth/login";
@@ -130,6 +166,11 @@ namespace GuessThatPokemon
             return response;
         }
 
+        /// <summary>
+        /// makes a API request to the GetAllEncounters endpoint of the API
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public async Task<EncounterHistoryResponseModel?> GetAllEncounters(Guid userID)
         {
             string url = ApiUrl + "encounters/get-all-by-user-id";

@@ -32,13 +32,13 @@ namespace GuessThatPokemon.Controllers
                 var response = await api.Login(model.Username, model.Password);
                 model.Password = string.Empty;
 
-                if (!response.Success)
+                if (!response!.Success)
                 {
                     ModelState.AddModelError("", response.Message);
                     return View(model);
                 }
 
-                UserID = response.Id;
+                UserID = response.Id!;
 
                 // Show login page
                 return RedirectToAction("Index", "Home");
@@ -86,13 +86,13 @@ namespace GuessThatPokemon.Controllers
                 //Try to resgister
                 var response = await api.Signup(model.Username, model.Password);
                 model.Password = string.Empty;
-                if (!response.Success)
+                if (!response!.Success)
                 {
                     ModelState.AddModelError("", response.Message);
                     return View(model);
                 }
 
-                UserID = response.Id;
+                UserID = response.Id!;
 
                 return RedirectToAction("Index", "Home");
             }

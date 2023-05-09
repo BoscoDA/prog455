@@ -13,7 +13,7 @@ namespace Logger
 {
     public class DBLogger
     {
-        private static DBLogger _instance;
+        private static DBLogger? _instance;
         private static InfoLogger info = new InfoLogger();
         private static ErrorLogger error = new ErrorLogger();
         private static WarningLogger warning = new WarningLogger();
@@ -44,7 +44,7 @@ namespace Logger
         /// <param name="ex"></param>
         public void Log(string level, string message, Exception? ex = null)
         {
-            info.Log(level, message, ex);
+            info.Log(level, message, ex!);
         }
     }
 }
