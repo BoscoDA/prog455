@@ -1,0 +1,104 @@
+﻿@model GuessThatPokemon.Models.AuthModel;
+
+<style>
+    /*help tip box styles taken from here https://tutorialzine.com/2014/07/css-inline-help-tips */
+    .help-tip {
+        position: absolute;
+        display: inline-block;
+        text-align: center;
+        background-color: #BCDBEA;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+        line-height: 26px;
+        cursor: default;
+        margin-left: 10px;
+    }
+
+        .help-tip:before {
+            content: '?';
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .help-tip:hover p {
+            display: block;
+            transform-origin: 100% 0%;
+        }
+
+        .help-tip p { /* The tooltip */
+            display: none;
+            text-align: left;
+            background-color: #1E2021;
+            padding: 20px;
+            width: 300px;
+            position: absolute;
+            border-radius: 3px;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+            right: -4px;
+            color: #FFF;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+            .help-tip p:before { /* The pointer of the tooltip */
+                position: absolute;
+                content: '';
+                width: 0;
+                height: 0;
+                border: 6px solid transparent;
+                border-bottom-color: #1E2021;
+                right: 10px;
+                top: -12px;
+            }
+
+            .help-tip p:after { /* Prevents the tooltip from being hidden */
+                width: 100%;
+                height: 40px;
+                content: '';
+                position: absolute;
+                top: -40px;
+                left: 0;
+            }
+</style>
+
+<main>
+    <p>Sign Up</p>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <label for="username" ; style="margin-bottom:20px"><b>Username</b></label>
+            <br>
+            <input type="text" placeholder="Enter Username" name="username" value="@Model.Username" required>
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            ;
+            <br>
+
+            <div style="margin-top:10px">
+                <label for="password"><b>Password</b></label>
+
+                @* help tip box styles taken from here https://tutorialzine.com/2014/07/css-inline-help-tips *@
+                <div class="help-tip">
+                    <p>Password must contain 1 uppercase letter, 1 number and 1 special character (!@@#$%^&*+=).</p>
+                </div>
+            </div>
+
+            <br>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            ;
+            <button type="submit">Sign Up</button>
+        }
+
+        <p>Have a account? <a href="@Url.Action("Login", "Auth")">Login here</a></p>
+
+    </div>
+
+
+</main>
