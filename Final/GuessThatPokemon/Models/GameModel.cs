@@ -29,15 +29,5 @@ namespace GuessThatPokemon.Models
         {
             Guesses.Add(guess);
         }
-
-        public static GameModel? FromJson(string? json)
-        {
-            if (string.IsNullOrWhiteSpace(json)) { return null; }
-            return JsonConvert.DeserializeObject<GameModel>(json);
-        }
-        public string toJson()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
     }
 }

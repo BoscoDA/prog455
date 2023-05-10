@@ -21,12 +21,14 @@ namespace GuessThatPokemon.Controllers
                     return View(new List<EncounterHistoryModel>());
                 }
                 var _encounters = response.Encounters!.OrderByDescending(x => x.TimeStamp);
+
+                ViewBag.IsLoggedIn = IsLoggedIn;
                 return View(_encounters);
             }
             catch (Exception ex)
             {
                 DBLogger.Log("ERROR", "An execption was thrown by EcounterHistory Index()", ex);
-                return View("Error",ex);
+                return View("Error", ex);
             }
         }
     }

@@ -42,14 +42,5 @@ namespace GuessThatPokemon.Controllers
         }
 
         public bool IsLoggedIn => !string.IsNullOrWhiteSpace(UserID);
-
-        // Runs before each view
-        public override void OnActionExecuting(ActionExecutingContext context)
-        {
-            base.OnActionExecuting(context);
-
-            // Sets a bool in the view bag if logged in or not
-            ViewBag.IsLoggedIn = IsLoggedIn;
-        }
     }
 }

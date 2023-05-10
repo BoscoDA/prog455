@@ -15,11 +15,13 @@ namespace GuessThatPokemon.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.IsLoggedIn = IsLoggedIn;
             return View();
         }
 
         public IActionResult Credits()
         {
+            ViewBag.IsLoggedIn = IsLoggedIn;
             return View();
         }
 

@@ -1,6 +1,7 @@
 ﻿using GuessThatPokemon.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Newtonsoft.Json;
 using NuGet.Protocol;
 using Service;
 using System.Reflection;
@@ -20,9 +21,9 @@ namespace GuessThatPokemon.Controllers
                 {
                     if (!HttpContext.Session.TryGetValue("GameModel", out byte[]? data))
                     {
-                        HttpContext.Session.SetString("GameModel", new GameModel().toJson());
+                        HttpContext.Session.SetString("GameModel", JsonConvert.SerializeObject(new GameModel()));
                     }
-                    return GameModel.FromJson(HttpContext.Session.GetString("GameModel")) ?? null;
+                    return JsonConvert.DeserializeObject<GameModel>(HttpContext.Session.GetString("GameModel")) ?? null;
                 }
                 return null;
             }
@@ -36,7 +37,7 @@ namespace GuessThatPokemon.Controllers
                     }
                     else
                     {
-                        HttpContext.Session.SetString("GameModel", value.toJson());
+                        HttpContext.Session.SetString("GameModel", JsonConvert.SerializeObject(value));
                     }
                 }
                 else
@@ -82,6 +83,7 @@ namespace GuessThatPokemon.Controllers
 
                 gameModel = gm;
                 ViewBag.Game = gm;
+                ViewBag.IsLoggedIn = IsLoggedIn;
                 return View(model);
             }
             catch (Exception ex)
@@ -89,11 +91,11 @@ namespace GuessThatPokemon.Controllers
                 DBLogger.Log("ERROR", "An execption was thrown by Game Index()", ex);
                 return View("Error", ex);
             }
-            
+
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index([FromForm]GameFormModel model)
+        public async Task<IActionResult> Index([FromForm] GameFormModel model)
         {
             try
             {
@@ -137,14 +139,15 @@ namespace GuessThatPokemon.Controllers
 
                 gameModel = gm;
                 ViewBag.Game = gm;
+                ViewBag.IsLoggedIn = IsLoggedIn;
                 return View(model);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 DBLogger.Log("ERROR", "An execption was thrown by Game Index()", ex);
                 return View("Error", ex);
             }
-            
+
         }
     }
 }
