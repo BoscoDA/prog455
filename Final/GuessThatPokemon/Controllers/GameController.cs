@@ -122,7 +122,6 @@ namespace GuessThatPokemon.Controllers
 
                     if (!response!.Success)
                     {
-                        // Some unknown problem has occured
                         ModelState.AddModelError("", response.Message);
                         return View(model);
                     }
