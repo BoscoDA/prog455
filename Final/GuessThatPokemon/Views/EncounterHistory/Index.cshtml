@@ -10,7 +10,7 @@
         flex-wrap: wrap;
     }
 
-    .wrapper {
+    .grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
@@ -24,7 +24,7 @@
 </style>
 <h1>Past Enounters</h1>
 
-<div class="wrapper">
+<div class="grid">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @foreach (var item in Model)
     {
